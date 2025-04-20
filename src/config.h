@@ -9,6 +9,6 @@ typedef struct {
 } WinConfig;
 
 //from config.cpp - reads config file and returns config struct
-void load_config(char *filename, WinConfig *config);
+void load_config(const std::string& filename, WinConfig *config);
 
 #endif
