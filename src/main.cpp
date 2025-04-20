@@ -1,13 +1,14 @@
 #include <iostream>
 #include <ncurses.h>
 #include "config.h"
+#include "classes/organizm.h"
+#include "classes/swiat.h"
 using namespace std;
 
 #define DEFAULT_HEIGHT  10
 #define DEFAULT_WIDTH   30
 #define DEFAULT_START_Y 5
 #define DEFAULT_START_X 5
-#define CONFIG_FILE '../cfg/config.txt'
 
 int main(){
     //initialization of config with default values
