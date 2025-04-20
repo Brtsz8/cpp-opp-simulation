@@ -1,0 +1,7 @@
+height=30
+width=40
+start_y=5
+start_x=5
+
+
+

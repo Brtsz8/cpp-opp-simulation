@@ -1,20 +1,32 @@
 #include <iostream>
 #include <ncurses.h>
+#include "config.h"
 using namespace std;
 
+#define DEFAULT_HEIGHT  10
+#define DEFAULT_WIDTH   30
+#define DEFAULT_START_Y 5
+#define DEFAULT_START_X 5
+#define CONFIG_FILE '../cfg/config.txt'
+
 int main(){
+    //initialization of config with default values
+    WinConfig cfg = {
+        .height = DEFAULT_HEIGHT,
+        .width = DEFAULT_WIDTH,
+        .start_y = DEFAULT_START_Y,
+        .start_x = DEFAULT_START_X
+    };
+    load_config("../cfg/config.txt",&cfg);
+    
     initscr();
     cbreak();
     noecho();
     curs_set(0);      // Hide cursor
     refresh();        // Refresh main window
 
-   //size of the window should be specified in the config file   
-    int height = 10, width = 30;
-    int start_y = 5, start_x = 10;
-
     // Create a new window
-    WINDOW *win = newwin(height, width, start_y, start_x);
+    WINDOW *win = newwin(cfg.height, cfg.width, cfg.start_y, cfg.start_x);
     if (win == NULL) {
         endwin();
         printf("Error creating window!\n");

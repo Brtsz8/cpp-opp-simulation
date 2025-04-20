@@ -11,7 +11,7 @@ CXXFLAGS = -Wall
 LDFLAGS = -lncurses
 
 # Pliki źródłowe
-SRCS = main.cpp
+SRCS = main.cpp config.cpp
 
 # Pliki obiektowe (zmienia .cpp na .o)
 OBJS = $(SRCS:.cpp=.o)
