@@ -8,6 +8,7 @@ typedef struct {
     int start_x;
 } WinConfig;
 
+//from config.cpp - reads config file and returns config struct
 void load_config(char *filename, WinConfig *config);
 
 #endif

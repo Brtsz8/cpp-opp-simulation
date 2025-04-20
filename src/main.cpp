@@ -25,23 +25,29 @@ int main(){
     curs_set(0);      // Hide cursor
     refresh();        // Refresh main window
 
-    // Create a new window
+    // Create a main window , log window and info window
     WINDOW *win = newwin(cfg.height, cfg.width, cfg.start_y, cfg.start_x);
-    if (win == NULL) {
+    WINDOW *log_window = newwin(cfg.height/4,cfg.width,cfg.start_y+cfg.height,cfg.start_x);
+    WINDOW *info_window = newwin(3,cfg.width,cfg.start_y-3,cfg.start_x);
+    if (win == NULL || log_window == NULL || info_window == NULL ) {
         endwin();
         printf("Error creating window!\n");
         return 1;
     }
 
     box(win, 0, 0);
+    box(log_window, 0, 0);
+    box(info_window, 0, 0);
+    mvwprintw(info_window, 1, 1, "Bartosz Pacyga 203833");
 
-    mvwprintw(win, 1, 1, "Hello, ncurses window!");
-
+    wrefresh(info_window);
+    wrefresh(log_window);
     wrefresh(win);
 
     getch();
-
+    delwin(log_window);
     delwin(win);
+    delwin(info_window);
     endwin();
     return 0;
 }
