@@ -23,7 +23,11 @@ class Swiat{
 
         void wykonajTure();
         void rysujSwiat();
+        //dodaje nowy organizm do swiata
         void nowyOrganizm(Organizm* organizm);
+
+        //zwraca pointer do organizmu na danych wspolrzednych
+        Organizm* findOrganismAt(int x, int y);
 };
 
 #endif

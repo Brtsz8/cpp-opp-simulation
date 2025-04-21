@@ -40,3 +40,12 @@ void Swiat::rysujSwiat() {
     box(win,0,0);
     wrefresh(win);
 }
+
+Organizm* Swiat::findOrganismAt(int x, int y){
+    for(Organizm* organizm : organizmy){
+        if (organizm->getPozycjaX() == x && organizm->getPozycjaY() == y){
+            return organizm;
+        }   
+    }
+    return nullptr;
+}

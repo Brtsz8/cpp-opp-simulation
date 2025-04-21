@@ -24,13 +24,16 @@ bool isInBounds(WINDOW* win, int y, int x) {
 
 //konstruktor
 Zwierze::Zwierze(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* swiat)
-                :Organizm(sila, inicjatywa, pozycja_x, pozycja_y,swiat) {}
+    :Organizm(sila, inicjatywa, pozycja_x, pozycja_y,swiat) {}
 
 //Destruktor
 Zwierze::~Zwierze() {};
 
 //akcja ktora zalezy od typu zwierzecia
 void Zwierze::akcja(){
+    WINDOW* win = getSwiat()->getWin();
+    WINDOW* log_window = getSwiat()->getLog();
+
     int dir = getRandomDir();
     int move_x[] = {0, 0, -1, 1};
     int move_y[] = {-1, 1, 0, 0};
@@ -38,11 +41,25 @@ void Zwierze::akcja(){
     int new_x = getPozycjaX() + move_x[dir];
     int new_y = getPozycjaY() + move_y[dir];
     
-    if(isInBounds(getSwiat()->getWin(), new_y, new_x ))
+    if(!isInBounds(win, new_y, new_x )) return;
+    //znajduje organizm na miejsu do ktorego chce sie ruszyc
+    Organizm* other = getSwiat()->findOrganismAt(new_x,new_y);
+    
+    //jezeli w dany miejsu nie ma zadnego organizmu
+    if(other == nullptr)
     {
         setPozycja(new_x,new_y);
-        mvwprintw(getSwiat()->getLog(),1,1,"Przesuwam na nową pozycje x: %d, y: %d",new_x,new_y);
-        wrefresh(getSwiat()->getLog());
+        
+        int y,x;
+        getyx(log_window,y,x);
+        mvwprintw(log_window,y+1,0,"Przesuwam na nową pozycje x: %d, y: %d",new_x,new_y);
+        wrefresh(log_window);
+    }
+    //w przeciwnym razie kolizja
+    else{
+        mvwprintw(log_window,1,1,"proba ataku!");
+        wrefresh(log_window);
+        kolizja();
     }
     
 }
