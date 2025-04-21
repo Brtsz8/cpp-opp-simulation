@@ -14,7 +14,7 @@ using namespace std;
 
 void simulation(WINDOW* win, WINDOW* log_window){
     Swiat swiat(win, log_window);
-    Wilk wilk(3,3,&swiat);
+    Wilk wilk(2,2,&swiat);
     swiat.nowyOrganizm(&wilk);
     while(getchar() != 'q')     //q odpowiada za wyjscie z symulacji
     {

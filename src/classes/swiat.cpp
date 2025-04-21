@@ -35,9 +35,8 @@ void Swiat::rysujSwiat() {
     //to zrobie pozniej
     //wclear(log_window) 
     for(Organizm* organizm : organizmy){
-        mvwaddch(win,organizm->getPozycjaY(),organizm->getPozycjaY(),organizm->rysowanie());
-        box(win,0,0);
-        wrefresh(win);
+        mvwaddch(win,organizm->getPozycjaY(),organizm->getPozycjaX(),organizm->rysowanie());
     }
-
+    box(win,0,0);
+    wrefresh(win);
 }
