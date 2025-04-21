@@ -5,7 +5,7 @@ TARGET = sim
 CXX = g++
 
 # Flagi kompilatora (opcjonalnie -Wall dla ostrzeżeń)
-CXXFLAGS = -Wall -std=c++17
+CXXFLAGS = -Wall -std=c++20
 
 # Flagi linkera (tutaj ncurses)
 LDFLAGS = -lncurses

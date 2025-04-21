@@ -26,13 +26,17 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     {   
         if(command == 'q') break;
         if(command == '1') {
-            wscrl(log_window, 1);
+            int new_index = swiat.getTopLogIndex() + 1;
+            swiat.setTopLogIndex(new_index);
+            swiat.wyswietlLogi(new_index);
             wrefresh(log_window);
             continue;
         }
         if(command == '2')
         {
-            wscrl(log_window, -1);
+            int new_index = swiat.getTopLogIndex() - 1;
+            swiat.setTopLogIndex(new_index);
+            swiat.wyswietlLogi(new_index);
             wrefresh(log_window);
             continue;
         }

@@ -19,8 +19,40 @@ WINDOW* Swiat::getLog(){
     return log_window;
 }
 
+//getter do okienka z logami
+int Swiat::getTopLogIndex(){
+    return topLog;
+}
+
+//setter do okienka z logami
+void Swiat::setTopLogIndex(int index){
+    topLog = index;
+}
+
 void Swiat::nowyOrganizm(Organizm* organizm){
     organizmy.push_back(organizm);
+}
+
+void Swiat::nowyLog(string log){
+    logs.push_back(log);
+}
+
+void Swiat::wyswietlLogi(int pierwszyLog){
+    werase(log_window);         //czysci okno logow
+    box(log_window, 0, 0);
+
+    int maxLines = getmaxy(log_window)-2;  //to -2 ze wzgl na ramke
+    for(int i=0; i < maxLines && i <logs.size(); ++i){
+        int logIndex = pierwszyLog + i;
+
+        //sprawdzenie czy urzytkownik nie wyskoczył poza zakres klikajac strzalki
+        if(logIndex >= logs.size()) logIndex = logs.size();
+        if(logIndex < 0) logIndex = 0;
+
+        mvwprintw(log_window, i+1, 1, "%s", logs[logIndex].c_str());
+    }
+
+    wrefresh(log_window);
 }
 
 void Swiat::wykonajTure(){
@@ -28,6 +60,7 @@ void Swiat::wykonajTure(){
         organizm->akcja();
     }
     rysujSwiat();
+    wyswietlLogi(topLog);
 }
 
 void Swiat::rysujSwiat() {

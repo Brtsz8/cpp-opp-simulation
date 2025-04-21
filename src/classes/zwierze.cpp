@@ -1,6 +1,7 @@
 #include <iostream>
 //nie uzywam rand ze wzgledu na thread safety
 #include <random>
+#include <sstream>
 #include "zwierze.h"
 #include "swiat.h"
 
@@ -32,7 +33,7 @@ Zwierze::~Zwierze() {};
 //akcja ktora zalezy od typu zwierzecia
 void Zwierze::akcja(){
     WINDOW* win = getSwiat()->getWin();
-    WINDOW* log_window = getSwiat()->getLog();
+    //WINDOW* log_window = getSwiat()->getLog();
 
     int dir = getRandomDir();
     int move_x[] = {0, 0, -1, 1};
@@ -50,15 +51,19 @@ void Zwierze::akcja(){
     {
         setPozycja(new_x,new_y);
         
-        int y,x;
-        getyx(log_window,y,x);
-        mvwprintw(log_window,y+1,0,"Przesuwam na nową pozycje x: %d, y: %d",new_x,new_y);
-        wrefresh(log_window);
+        //int y,x;
+        // getyx(log_window,y,x);
+        // mvwprintw(log_window,y+1,0,"Przesuwam na nową pozycje x: %d, y: %d",new_x,new_y);
+        // wrefresh(log_window);
+        ostringstream log;
+        log << "Przesuwam na nowa pozycje x:"<<new_x<<", y: "<<new_y;
+        getSwiat()->nowyLog(log.str());
     }
     //w przeciwnym razie kolizja
     else{
-        mvwprintw(log_window,1,1,"proba ataku!");
-        wrefresh(log_window);
+        getSwiat()->nowyLog(string("Próba ataku!"));
+        // mvwprintw(log_window,1,1,"proba ataku!");
+        // wrefresh(log_window);
         kolizja();
     }
     
