@@ -5,6 +5,7 @@
 #include "classes/swiat.h"
 #include "classes/zwierze.h"
 #include "classes/animals/wilk.h"
+#include "classes/animals/owca.h"
 using namespace std;
 
 #define DEFAULT_HEIGHT  10
@@ -15,7 +16,9 @@ using namespace std;
 void simulation(WINDOW* win, WINDOW* log_window){
     Swiat swiat(win, log_window);
     Wilk wilk(2,2,&swiat);
+    Owca owca(4,4,&swiat);
     swiat.nowyOrganizm(&wilk);
+    swiat.nowyOrganizm(&owca);
     while(getchar() != 'q')     //q odpowiada za wyjscie z symulacji
     {
         swiat.wykonajTure();
