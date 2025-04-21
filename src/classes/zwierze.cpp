@@ -11,11 +11,13 @@ Zwierze::Zwierze(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* 
 //Destruktor
 Zwierze::~Zwierze() {};
 
+//akcja ktora zalezy od typu zwierzecia
 void Zwierze::akcja(){
     cout<<"akcja\n";
     setPozycja(getPozycjaX() +1, getPozycjaY() +1);
 }
 
+//opisuje co dzieje sie przy kolizji miedzy dwoma zwierzetami
 void Zwierze::kolizja(){
     cout<<"kolizja\n";
 }
