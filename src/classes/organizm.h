@@ -16,11 +16,12 @@ class Organizm{
         int pozycja_y;
         Swiat* swiat;
     public:
-        ~Organizm();
-        virtual void akcja() const = 0 ;
-        virtual void kolizja() const = 0;
+        Organizm(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* swiat);
+        virtual ~Organizm();
+        virtual void akcja() = 0 ;
+        virtual void kolizja() = 0;
         //zwraca symbol do narysowania
-        virtual char rysowanie() const = 0;
+        virtual char rysowanie() = 0;
         
         //gettery
         int getSila() const;

@@ -4,6 +4,12 @@
 
 using namespace std;
 
+//konstruktor
+Organizm::Organizm(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* swiat)
+    :sila(sila), inicjatywa(inicjatywa), pozycja_x(pozycja_x), pozycja_y(pozycja_y), swiat(swiat) {}
+//destruktor
+Organizm::~Organizm() {};
+
 //gettery
 int Organizm::getSila() const{
     return sila;

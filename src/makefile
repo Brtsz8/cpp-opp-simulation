@@ -5,13 +5,13 @@ TARGET = sim
 CXX = g++
 
 # Flagi kompilatora (opcjonalnie -Wall dla ostrzeżeń)
-CXXFLAGS = -Wall
+CXXFLAGS = -Wall -std=c++17
 
 # Flagi linkera (tutaj ncurses)
 LDFLAGS = -lncurses
 
 # Pliki źródłowe
-SRCS = main.cpp config.cpp classes/organizm.cpp classes/swiat.cpp
+SRCS = main.cpp config.cpp $(wildcard classes/*.cpp)
 
 # Pliki obiektowe (zmienia .cpp na .o)
 OBJS = $(SRCS:.cpp=.o)
@@ -30,3 +30,5 @@ $(TARGET): $(OBJS)
 # Reguła czyszcząca pliki
 clean:
 	rm -f $(OBJS) $(TARGET)
+
+.PHONY: all clean

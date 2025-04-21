@@ -10,6 +10,18 @@ using namespace std;
 #define DEFAULT_START_Y 5
 #define DEFAULT_START_X 5
 
+
+void setUpWindows(WINDOW *win,WINDOW *log_window, WINDOW *info_window){
+    box(win, 0, 0);
+    box(log_window, 0, 0);
+    box(info_window, 0, 0);
+    mvwprintw(info_window, 1, 1, "Bartosz Pacyga 203833");
+
+    wrefresh(info_window);
+    wrefresh(log_window);
+    wrefresh(win);
+}
+
 int main(){
     //initialization of config with default values
     WinConfig cfg = {
@@ -36,14 +48,7 @@ int main(){
         return 1;
     }
 
-    box(win, 0, 0);
-    box(log_window, 0, 0);
-    box(info_window, 0, 0);
-    mvwprintw(info_window, 1, 1, "Bartosz Pacyga 203833");
-
-    wrefresh(info_window);
-    wrefresh(log_window);
-    wrefresh(win);
+    setUpWindows(win,log_window,info_window);
 
     getch();
     delwin(log_window);
