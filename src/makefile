@@ -11,7 +11,7 @@ CXXFLAGS = -Wall -std=c++17
 LDFLAGS = -lncurses
 
 # Pliki źródłowe
-SRCS = main.cpp config.cpp $(wildcard classes/*.cpp)
+SRCS = main.cpp config.cpp $(wildcard classes/*.cpp) $(wildcard classes/animals/*.cpp)
 
 # Pliki obiektowe (zmienia .cpp na .o)
 OBJS = $(SRCS:.cpp=.o)
