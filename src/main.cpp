@@ -3,6 +3,8 @@
 #include "config.h"
 #include "classes/organizm.h"
 #include "classes/swiat.h"
+#include "classes/zwierze.h"
+#include "classes/animals/wilk.h"
 using namespace std;
 
 #define DEFAULT_HEIGHT  10
@@ -10,6 +12,15 @@ using namespace std;
 #define DEFAULT_START_Y 5
 #define DEFAULT_START_X 5
 
+void simulation(WINDOW* win, WINDOW* log_window){
+    Swiat swiat(win, log_window);
+    Wilk wilk(3,3,&swiat);
+    swiat.nowyOrganizm(&wilk);
+    while(getchar() != 'q')     //q odpowiada za wyjscie z symulacji
+    {
+        swiat.wykonajTure();
+    }
+}
 
 void setUpWindows(WINDOW *win,WINDOW *log_window, WINDOW *info_window){
     box(win, 0, 0);
@@ -49,6 +60,7 @@ int main(){
     }
 
     setUpWindows(win,log_window,info_window);
+    simulation(win,log_window);
 
     getch();
     delwin(log_window);

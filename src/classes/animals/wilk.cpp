@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ncurses.h>
 #include "wilk.h"
-
+#include "../swiat.h"
 using namespace std;
 
 Wilk::Wilk(int pozycja_x, int pozycja_y, Swiat* swiat) 

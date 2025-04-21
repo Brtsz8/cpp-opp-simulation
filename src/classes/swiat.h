@@ -16,8 +16,14 @@ class Swiat{
     public:
         Swiat(WINDOW *new_win, WINDOW *new_log_win);
         ~Swiat();
+
+        //getter
+        WINDOW* getWin();
+        WINDOW* getLog();
+
         void wykonajTure();
         void rysujSwiat();
+        void nowyOrganizm(Organizm* organizm);
 };
 
 #endif
