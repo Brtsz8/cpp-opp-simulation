@@ -38,9 +38,12 @@ void Zwierze::akcja(){
     int dir = getRandomDir();
     int move_x[] = {0, 0, -1, 1};
     int move_y[] = {-1, 1, 0, 0};
+    
+    int from_x = getPozycjaX();
+    int from_y = getPozycjaY();
 
-    int new_x = getPozycjaX() + move_x[dir];
-    int new_y = getPozycjaY() + move_y[dir];
+    int new_x = from_x + move_x[dir];
+    int new_y = from_y + move_y[dir];
     
     if(!isInBounds(win, new_y, new_x )) return;
     //znajduje organizm na miejsu do ktorego chce sie ruszyc
@@ -64,11 +67,17 @@ void Zwierze::akcja(){
         getSwiat()->nowyLog(string("Próba ataku!"));
         // mvwprintw(log_window,1,1,"proba ataku!");
         // wrefresh(log_window);
-        kolizja();
+        kolizja(from_x, from_y, other);
     }
     
 }
 
 //opisuje co dzieje sie przy kolizji miedzy dwoma zwierzetami
-void Zwierze::kolizja(){
+void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
+    if(typeid(*this)==typeid(*other))
+    {
+        getSwiat()->nowyLog(string("Beda sie klonowac!"));
+        /*tu beda sie klonowac*/
+    }
+    /*tu bedzie reszta logiki ataku*/
 }

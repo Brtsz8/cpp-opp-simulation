@@ -19,7 +19,7 @@ class Organizm{
         Organizm(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* swiat);
         virtual ~Organizm();
         virtual void akcja() = 0 ;
-        virtual void kolizja() = 0;
+        virtual void kolizja(int from_x, int from_y, Organizm* other) = 0;
         //zwraca symbol do narysowania
         virtual char rysowanie() = 0;
         

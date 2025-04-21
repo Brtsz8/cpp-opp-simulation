@@ -20,8 +20,10 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     Swiat swiat(win, log_window);
     Wilk wilk(2,2,&swiat);
     Owca owca(4,4,&swiat);
+    Owca owca2(5,6,&swiat);
     swiat.nowyOrganizm(&wilk);
     swiat.nowyOrganizm(&owca);
+    swiat.nowyOrganizm(&owca2);
     while((command = getchar()))     //q odpowiada za wyjscie z symulacji
     {   
         if(command == 'q') break;
@@ -96,7 +98,6 @@ int main(){
     setUpWindows(win,log_window,info_window,turn_counter);
     simulation(win,log_window,turn_counter);
 
-    getch();
     delwin(log_window);
     delwin(win);
     delwin(info_window);
