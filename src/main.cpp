@@ -17,7 +17,7 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     char command;
     int turn_count = 0;
 
-    Swiat swiat(win, log_window);
+    Swiat swiat(win, log_window); 
     Wilk wilk(2,2,&swiat);
     Wilk wilk2(3,3,&swiat);
     Wilk wilk3(4,4,&swiat);
@@ -49,12 +49,16 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
             continue;
         }
         else{
+            
             swiat.wykonajTure();
             turn_count++;
             mvwprintw(turn_counter, 1, 1, "Turn number: %d", turn_count);
             wrefresh(turn_counter);
+            
         }
     }
+
+    
 }
 
 void setUpWindows(WINDOW *win,WINDOW *log_window, WINDOW *info_window, WINDOW *turn_counter){

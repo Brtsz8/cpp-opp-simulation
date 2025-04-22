@@ -13,5 +13,6 @@ char Wilk::rysowanie(){
     return 'W';
 }
 Organizm* Wilk::dodajPotomka(int x, int y){
-    return new Wilk(x,y,getSwiat());
+    Organizm* mlodyWilk = new Wilk(x,y,getSwiat());
+    return mlodyWilk;
 }

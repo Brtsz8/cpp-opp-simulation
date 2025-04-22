@@ -48,8 +48,23 @@ pair<int, int> Zwierze::znajdzWolnePoleObok(){
 
 //akcja ktora zalezy od typu zwierzecia
 void Zwierze::akcja(){
+
+    if (this == nullptr) {
+        std::cerr << "Błąd: this == nullptr w Zwierze::akcja()\n";
+        abort();
+    }
+
+    if (getSwiat() == nullptr) {
+        std::cerr << "Błąd: getSwiat() == nullptr\n";
+        abort();
+    }
+
+
     WINDOW* win = getSwiat()->getWin();
-    //WINDOW* log_window = getSwiat()->getLog();
+    if (win == nullptr) {
+        std::cerr << "Błąd: getWin() == nullptr\n";
+        abort();
+    }
 
     int dir = getRandomDir();
     int move_x[] = {0, 0, -1, 1};
@@ -60,11 +75,17 @@ void Zwierze::akcja(){
 
     int new_x = from_x + move_x[dir];
     int new_y = from_y + move_y[dir];
+
     
     if(!isInBounds(win, new_y, new_x )) return;
     //znajduje organizm na miejsu do ktorego chce sie ruszyc
     Organizm* other = getSwiat()->findOrganismAt(new_x,new_y);
     
+    if (other != nullptr) {
+    //std::cerr << "Znaleziono innego organizma na (" << new_x << "," << new_y << "): "
+    //          << typeid(*other).name() << "\n";
+}
+
     //jezeli w dany miejsu nie ma zadnego organizmu
     if(other == nullptr)
     {
@@ -76,7 +97,9 @@ void Zwierze::akcja(){
     }
     //w przeciwnym razie kolizja
     else{
-        getSwiat()->nowyLog(string("Próba ataku!"));
+        ostringstream log;
+        log << "Próba ataku!";
+        getSwiat()->nowyLog(log.str());
         kolizja(from_x, from_y, other);
     }
 }
@@ -92,10 +115,14 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
         if(new_x == 0 && new_y == 0){
             getSwiat()->nowyLog(string("Klonowanie nie powiodlo sie - za malo miejsca"));
             return;
+        }else{
+            Organizm* potomek = this->dodajPotomka(new_x, new_y);
+            //Organizm* potomek = nullptr;
+            if(potomek == nullptr) {
+                cerr << "dodajPotomka zwrocilo nullptr!\n";
+            }
+            if(potomek) getSwiat()->nowyOrganizm(potomek);
         }
-        Organizm* potomek = this->dodajPotomka(new_x, new_y);
-        if(potomek)
-            getSwiat()->nowyOrganizm(potomek);
 
     }
     /*tu bedzie reszta logiki ataku*/

@@ -56,11 +56,17 @@ void Swiat::wyswietlLogi(int pierwszyLog){
 }
 
 void Swiat::wykonajTure(){
-    for(Organizm* organizm : organizmy){
-        organizm->akcja();
+    vector<Organizm*> aktualne = organizmy;
+    for (size_t i = 0; i < aktualne.size(); ++i) {
+        Organizm* organizm = aktualne[i];
+        if (organizm) {
+            organizm->akcja();
+        } else {
+            std::cout << " (nullptr)\n";
+        }
     }
     rysujSwiat();
-    wyswietlLogi(logs.size() - 10);
+    wyswietlLogi(topLog);
 }
 
 void Swiat::rysujSwiat() {
@@ -68,6 +74,7 @@ void Swiat::rysujSwiat() {
     //to zrobie pozniej
     //wclear(log_window) 
     for(Organizm* organizm : organizmy){
+        if(organizm == nullptr) continue;
         mvwaddch(win,organizm->getPozycjaY(),organizm->getPozycjaX(),organizm->rysowanie());
     }
     box(win,0,0);

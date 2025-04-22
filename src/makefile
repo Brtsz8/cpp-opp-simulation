@@ -5,10 +5,10 @@ TARGET = sim
 CXX = g++
 
 # Flagi kompilatora (opcjonalnie -Wall dla ostrzeżeń)
-CXXFLAGS = -Wall -std=c++20
+CXXFLAGS = -Wall -std=c++20 -g -fsanitize=address -fno-omit-frame-pointer
 
 # Flagi linkera (tutaj ncurses)
-LDFLAGS = -lncurses
+LDFLAGS = -lncurses -fsanitize=address
 
 # Pliki źródłowe
 SRCS = main.cpp config.cpp $(wildcard classes/*.cpp) $(wildcard classes/animals/*.cpp)
