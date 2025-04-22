@@ -13,5 +13,6 @@ class Zwierze : public Organizm{
 
     virtual void akcja() override;
     virtual void kolizja(int from_x, int from_y, Organizm* other) override;
+    pair<int, int> znajdzWolnePoleObok();
 };
 #endif

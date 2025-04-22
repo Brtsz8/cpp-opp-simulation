@@ -30,6 +30,22 @@ Zwierze::Zwierze(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* 
 //Destruktor
 Zwierze::~Zwierze() {};
 
+pair<int, int> Zwierze::znajdzWolnePoleObok(){
+    static const int dirs[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+
+    for(auto [dx, dy] : dirs){
+        int new_x = getPozycjaX() + dx;
+        int new_y = getPozycjaY() + dy;
+
+        //sprawdza czy nowo wybrana pozycja jest wolna i czy nie jest poza granicami swiata
+        if( getSwiat()->findOrganismAt(new_x, new_y) == nullptr && 
+            isInBounds(getSwiat()->getWin(), new_x, new_y))
+            return {new_x, new_y};
+    }
+
+    return {0,0}; //brak miejsca -> trzeba sprawdzic to w funckji wywolujacej
+}
+
 //akcja ktora zalezy od typu zwierzecia
 void Zwierze::akcja(){
     WINDOW* win = getSwiat()->getWin();
