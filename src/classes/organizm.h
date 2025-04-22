@@ -20,6 +20,7 @@ class Organizm{
         virtual ~Organizm();
         virtual void akcja() = 0 ;
         virtual void kolizja(int from_x, int from_y, Organizm* other) = 0;
+        virtual Organizm* dodajPotomka(int x, int y) = 0;
         //zwraca symbol do narysowania
         virtual char rysowanie() = 0;
         

@@ -10,5 +10,6 @@ class Wilk : public Zwierze {
         ~Wilk() override;
 
         char rysowanie() override;
+        Organizm* dodajPotomka(int x, int y) override;
 };
 #endif //WILK_H

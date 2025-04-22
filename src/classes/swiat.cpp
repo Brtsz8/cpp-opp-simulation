@@ -60,7 +60,7 @@ void Swiat::wykonajTure(){
         organizm->akcja();
     }
     rysujSwiat();
-    wyswietlLogi(topLog);
+    wyswietlLogi(logs.size() - 10);
 }
 
 void Swiat::rysujSwiat() {

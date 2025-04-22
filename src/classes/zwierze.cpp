@@ -38,8 +38,8 @@ pair<int, int> Zwierze::znajdzWolnePoleObok(){
         int new_y = getPozycjaY() + dy;
 
         //sprawdza czy nowo wybrana pozycja jest wolna i czy nie jest poza granicami swiata
-        if( getSwiat()->findOrganismAt(new_x, new_y) == nullptr && 
-            isInBounds(getSwiat()->getWin(), new_x, new_y))
+        if( isInBounds(getSwiat()->getWin(), new_x, new_y) && 
+            getSwiat()->findOrganismAt(new_x, new_y) == nullptr)
             return {new_x, new_y};
     }
 
@@ -70,10 +70,6 @@ void Zwierze::akcja(){
     {
         setPozycja(new_x,new_y);
         
-        //int y,x;
-        // getyx(log_window,y,x);
-        // mvwprintw(log_window,y+1,0,"Przesuwam na nową pozycje x: %d, y: %d",new_x,new_y);
-        // wrefresh(log_window);
         ostringstream log;
         log << "Przesuwam na nowa pozycje x:"<<new_x<<", y: "<<new_y;
         getSwiat()->nowyLog(log.str());
@@ -81,11 +77,8 @@ void Zwierze::akcja(){
     //w przeciwnym razie kolizja
     else{
         getSwiat()->nowyLog(string("Próba ataku!"));
-        // mvwprintw(log_window,1,1,"proba ataku!");
-        // wrefresh(log_window);
         kolizja(from_x, from_y, other);
     }
-    
 }
 
 //opisuje co dzieje sie przy kolizji miedzy dwoma zwierzetami
@@ -93,7 +86,17 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
     if(typeid(*this)==typeid(*other))
     {
         getSwiat()->nowyLog(string("Beda sie klonowac!"));
-        /*tu beda sie klonowac*/
+        
+        //zwraca dwa inty reprezentujace wolne pole
+        auto [new_x, new_y] = znajdzWolnePoleObok();
+        if(new_x == 0 && new_y == 0){
+            getSwiat()->nowyLog(string("Klonowanie nie powiodlo sie - za malo miejsca"));
+            return;
+        }
+        Organizm* potomek = this->dodajPotomka(new_x, new_y);
+        if(potomek)
+            getSwiat()->nowyOrganizm(potomek);
+
     }
     /*tu bedzie reszta logiki ataku*/
 }

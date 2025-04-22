@@ -12,3 +12,6 @@ Wilk::~Wilk() {};
 char Wilk::rysowanie(){
     return 'W';
 }
+Organizm* Wilk::dodajPotomka(int x, int y){
+    return new Wilk(x,y,getSwiat());
+}
