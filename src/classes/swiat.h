@@ -42,6 +42,7 @@ class Swiat{
         Organizm* findOrganismAt(int x, int y);
 
         void usunOrganizmy();
+        void sortujWszystkie();
 
 };
 

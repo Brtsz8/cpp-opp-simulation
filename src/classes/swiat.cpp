@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ncurses.h>
+#include <algorithm>
 #include <vector>
 #include "swiat.h"
 
@@ -8,7 +9,7 @@ using namespace std;
 Swiat::Swiat(WINDOW *new_win, WINDOW *new_log_win) : win(new_win), log_window(new_log_win) {}
 
 Swiat::~Swiat(){
-    //usunOrganizmy();
+    usunOrganizmy(); //prevents memory leaks, clear-up after simulation
 }
 
 void Swiat::usunOrganizmy() {
@@ -63,7 +64,9 @@ void Swiat::wyswietlLogi(int pierwszyLog){
 }
 
 void Swiat::wykonajTure(){
+    sortujWszystkie();
     vector<Organizm*> aktualne = organizmy;
+    
     for (size_t i = 0; i < aktualne.size(); ++i) {
         Organizm* organizm = aktualne[i];
         if (organizm) {
@@ -95,4 +98,10 @@ Organizm* Swiat::findOrganismAt(int x, int y){
         }   
     }
     return nullptr;
+}
+
+void Swiat::sortujWszystkie() {
+    std::stable_sort(organizmy.begin(), organizmy.end(), [](Organizm* a, Organizm* b) {
+        return a->getInicjatywa() > b->getInicjatywa(); // only initiative matters
+    });
 }

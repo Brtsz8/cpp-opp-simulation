@@ -107,12 +107,21 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
         //zwraca dwa inty reprezentujace wolne pole
         auto [new_x, new_y] = znajdzWolnePoleObok();
         if(new_x == -1 && new_y == -1){
-            //if(other != this) other->kolizja(fromX, fromY, other);
+            //[new_x, new_y] == other->znajdzWolnePoleObok();
+            //if(new_x == -1 && new_y == -1){
+            //    getSwiat()->nowyLog(string("Klonowanie nie powiodlo sie - za malo miejsca"));
+            //    return;
+            //}else{
+            //    Organizm* potomek = this->dodajPotomka(new_x, new_y);
+            //    if(potomek == nullptr) {
+            //        cerr << "dodajPotomka zwrocilo nullptr!\n";
+            //    }
+            //    if(potomek) getSwiat()->nowyOrganizm(potomek);
+            //}
             getSwiat()->nowyLog(string("Klonowanie nie powiodlo sie - za malo miejsca"));
             return;
         }else{
             Organizm* potomek = this->dodajPotomka(new_x, new_y);
-            //Organizm* potomek = nullptr;
             if(potomek == nullptr) {
                 cerr << "dodajPotomka zwrocilo nullptr!\n";
             }
