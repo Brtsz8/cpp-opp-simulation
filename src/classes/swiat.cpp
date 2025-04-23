@@ -8,12 +8,12 @@ using namespace std;
 Swiat::Swiat(WINDOW *new_win, WINDOW *new_log_win) : win(new_win), log_window(new_log_win) {}
 
 Swiat::~Swiat(){
-    usunOrganizmy();
+    //usunOrganizmy();
 }
 
 void Swiat::usunOrganizmy() {
     for (Organizm* organizm : organizmy) {
-        delete organizm; 
+        if(organizm != nullptr) delete organizm; 
     }
     organizmy.clear(); 
 }

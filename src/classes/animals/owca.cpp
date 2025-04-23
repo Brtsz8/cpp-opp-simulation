@@ -15,5 +15,9 @@ char Owca::rysowanie(){
 
 Organizm* Owca::dodajPotomka(int x, int y){
     Organizm* mlodaOwca = new Owca(x,y,getSwiat());
+    if (mlodaOwca == nullptr) {
+        cerr << "[BŁĄD] Nie udało się zaalokować pamięci dla młodej owcy!" << endl;
+        return nullptr;
+    }
     return mlodaOwca;
 }

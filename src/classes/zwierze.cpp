@@ -43,7 +43,7 @@ pair<int, int> Zwierze::znajdzWolnePoleObok(){
             return {new_x, new_y};
     }
 
-    return {0,0}; //brak miejsca -> trzeba sprawdzic to w funckji wywolujacej
+    return {-1,-1}; //brak miejsca -> trzeba sprawdzic to w funckji wywolujacej
 }
 
 //akcja ktora zalezy od typu zwierzecia
@@ -106,7 +106,7 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
         
         //zwraca dwa inty reprezentujace wolne pole
         auto [new_x, new_y] = znajdzWolnePoleObok();
-        if(new_x == 0 && new_y == 0){
+        if(new_x == -1 && new_y == -1){
             //if(other != this) other->kolizja(fromX, fromY, other);
             getSwiat()->nowyLog(string("Klonowanie nie powiodlo sie - za malo miejsca"));
             return;

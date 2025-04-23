@@ -22,18 +22,15 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     int turn_count = 0;
 
     Swiat swiat(win, log_window); 
-    Wilk wilk(2,2,&swiat);
-    Antylopa a(3,3,&swiat);
-    Antylopa a2(4,4,&swiat);
-    Zolw zolw(2,3,&swiat);
-    Owca owca(4,4,&swiat);
-    Owca owca2(5,6,&swiat);
-    swiat.nowyOrganizm(&wilk);
-    swiat.nowyOrganizm(&a);
-    swiat.nowyOrganizm(&a2);
-    swiat.nowyOrganizm(&zolw);
-    swiat.nowyOrganizm(&owca);
-    swiat.nowyOrganizm(&owca2);
+
+    swiat.nowyOrganizm(new Zolw(1, 1, &swiat));
+    swiat.nowyOrganizm(new Zolw(2, 2, &swiat));
+    swiat.nowyOrganizm(new Zolw(3, 3, &swiat));
+    swiat.nowyOrganizm(new Zolw(4, 4, &swiat));
+    swiat.nowyOrganizm(new Owca(5, 5, &swiat));
+    swiat.nowyOrganizm(new Owca(6, 6, &swiat));
+    swiat.nowyOrganizm(new Owca(7, 7, &swiat));
+
     while((command = getchar()))     //q odpowiada za wyjscie z symulacji
     {   
         if(command == 'q') break;
@@ -58,12 +55,8 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
             turn_count++;
             mvwprintw(turn_counter, 1, 1, "Turn number: %d", turn_count);
             wrefresh(turn_counter);
-            
         }
     }
-
-    swiat.usunOrganizmy(); //clean-up
-    refresh();
 }
 
 void setUpWindows(WINDOW *win,WINDOW *log_window, WINDOW *info_window, WINDOW *turn_counter){
