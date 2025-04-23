@@ -10,5 +10,6 @@ class Owca : public Zwierze {
         ~Owca() override;
 
         char rysowanie() override;
+        Organizm* dodajPotomka(int x, int y) override;
 };
 #endif //OWCA_H

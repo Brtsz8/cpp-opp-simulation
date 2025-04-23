@@ -10,5 +10,6 @@ class Antylopa : public Zwierze {
         ~Antylopa() override;
 
         char rysowanie() override;
+        Organizm* dodajPotomka(int x, int y) override;
 };
 #endif //ANTYLOPA_H

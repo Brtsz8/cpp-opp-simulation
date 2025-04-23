@@ -12,3 +12,8 @@ Antylopa::~Antylopa() {};
 char Antylopa::rysowanie(){
     return 'A';
 }
+
+Organizm* Antylopa::dodajPotomka(int x, int y){
+    Organizm* mlodaAntylopa = new Antylopa(x,y,getSwiat());
+    return mlodaAntylopa;
+}

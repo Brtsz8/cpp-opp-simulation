@@ -6,6 +6,10 @@
 #include "classes/zwierze.h"
 #include "classes/animals/wilk.h"
 #include "classes/animals/owca.h"
+#include "classes/animals/zolw.h"
+#include "classes/animals/antylopa.h"
+#include "classes/animals/lis.h"
+
 using namespace std;
 
 #define DEFAULT_HEIGHT  10
@@ -19,17 +23,17 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
 
     Swiat swiat(win, log_window); 
     Wilk wilk(2,2,&swiat);
-    Wilk wilk2(3,3,&swiat);
-    Wilk wilk3(4,4,&swiat);
-    Wilk wilk4(2,3,&swiat);
-    //Owca owca(4,4,&swiat);
-   // Owca owca2(5,6,&swiat);
+    Antylopa a(3,3,&swiat);
+    Antylopa a2(4,4,&swiat);
+    Zolw zolw(2,3,&swiat);
+    Owca owca(4,4,&swiat);
+    Owca owca2(5,6,&swiat);
     swiat.nowyOrganizm(&wilk);
-    swiat.nowyOrganizm(&wilk2);
-    swiat.nowyOrganizm(&wilk3);
-    swiat.nowyOrganizm(&wilk4);
-    //swiat.nowyOrganizm(&owca);
-   // swiat.nowyOrganizm(&owca2);
+    swiat.nowyOrganizm(&a);
+    swiat.nowyOrganizm(&a2);
+    swiat.nowyOrganizm(&zolw);
+    swiat.nowyOrganizm(&owca);
+    swiat.nowyOrganizm(&owca2);
     while((command = getchar()))     //q odpowiada za wyjscie z symulacji
     {   
         if(command == 'q') break;

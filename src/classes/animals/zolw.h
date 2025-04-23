@@ -10,5 +10,6 @@ class Zolw : public Zwierze {
         ~Zolw() override;
 
         char rysowanie() override;
+        Organizm* dodajPotomka(int x, int y) override;
 };
 #endif //ZOLW_H

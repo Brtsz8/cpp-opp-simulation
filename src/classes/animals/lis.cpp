@@ -12,3 +12,8 @@ Lis::~Lis() {};
 char Lis::rysowanie(){
     return 'L';
 }
+
+Organizm* Lis::dodajPotomka(int x, int y){
+    Organizm* mlodyLis = new Lis(x,y,getSwiat());
+    return mlodyLis;
+}

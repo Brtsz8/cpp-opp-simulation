@@ -12,3 +12,8 @@ Owca::~Owca() {};
 char Owca::rysowanie(){
     return 'O';
 }
+
+Organizm* Owca::dodajPotomka(int x, int y){
+    Organizm* mlodaOwca = new Owca(x,y,getSwiat());
+    return mlodaOwca;
+}

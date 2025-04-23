@@ -12,3 +12,8 @@ Zolw::~Zolw() {};
 char Zolw::rysowanie(){
     return 'Z';
 }
+
+Organizm* Zolw::dodajPotomka(int x, int y){
+    Organizm* mlodyZolw = new Zolw(x,y,getSwiat());
+    return mlodyZolw;
+}
