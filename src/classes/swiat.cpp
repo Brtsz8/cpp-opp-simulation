@@ -8,7 +8,14 @@ using namespace std;
 Swiat::Swiat(WINDOW *new_win, WINDOW *new_log_win) : win(new_win), log_window(new_log_win) {}
 
 Swiat::~Swiat(){
+    usunOrganizmy();
+}
 
+void Swiat::usunOrganizmy() {
+    for (Organizm* organizm : organizmy) {
+        delete organizm; 
+    }
+    organizmy.clear(); 
 }
 
 //gettery do okien, wazne przy wyświetlaniu zwierzat/informacji 
@@ -41,9 +48,9 @@ void Swiat::wyswietlLogi(int pierwszyLog){
     werase(log_window);         //czysci okno logow
     box(log_window, 0, 0);
 
-    int maxLines = getmaxy(log_window)-2;  //to -2 ze wzgl na ramke
-    for(int i=0; i < maxLines && i <logs.size(); ++i){
-        int logIndex = pierwszyLog + i;
+    long unsigned int maxLines = getmaxy(log_window)-2;  //to -2 ze wzgl na ramke
+    for(size_t i=0; i < maxLines && i <logs.size(); ++i){
+        long unsigned int logIndex = pierwszyLog + i;
 
         //sprawdzenie czy urzytkownik nie wyskoczył poza zakres klikajac strzalki
         if(logIndex >= logs.size()) logIndex = logs.size();
@@ -74,8 +81,8 @@ void Swiat::rysujSwiat() {
     //to zrobie pozniej
     //wclear(log_window) 
     for(Organizm* organizm : organizmy){
-        if(organizm == nullptr) continue;
-        mvwaddch(win,organizm->getPozycjaY(),organizm->getPozycjaX(),organizm->rysowanie());
+       if(organizm == nullptr) continue;
+       mvwaddch(win,organizm->getPozycjaY(),organizm->getPozycjaX(),organizm->rysowanie());
     }
     box(win,0,0);
     wrefresh(win);

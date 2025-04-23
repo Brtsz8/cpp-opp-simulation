@@ -62,7 +62,8 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
         }
     }
 
-    
+    swiat.usunOrganizmy(); //clean-up
+    refresh();
 }
 
 void setUpWindows(WINDOW *win,WINDOW *log_window, WINDOW *info_window, WINDOW *turn_counter){

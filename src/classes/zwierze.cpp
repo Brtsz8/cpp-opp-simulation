@@ -49,16 +49,10 @@ pair<int, int> Zwierze::znajdzWolnePoleObok(){
 //akcja ktora zalezy od typu zwierzecia
 void Zwierze::akcja(){
 
-    if (this == nullptr) {
-        std::cerr << "Błąd: this == nullptr w Zwierze::akcja()\n";
-        abort();
-    }
-
     if (getSwiat() == nullptr) {
         std::cerr << "Błąd: getSwiat() == nullptr\n";
         abort();
     }
-
 
     WINDOW* win = getSwiat()->getWin();
     if (win == nullptr) {
@@ -113,6 +107,7 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
         //zwraca dwa inty reprezentujace wolne pole
         auto [new_x, new_y] = znajdzWolnePoleObok();
         if(new_x == 0 && new_y == 0){
+            //if(other != this) other->kolizja(fromX, fromY, other);
             getSwiat()->nowyLog(string("Klonowanie nie powiodlo sie - za malo miejsca"));
             return;
         }else{

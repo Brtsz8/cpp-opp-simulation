@@ -41,6 +41,8 @@ class Swiat{
         //zwraca pointer do organizmu na danych wspolrzednych
         Organizm* findOrganismAt(int x, int y);
 
+        void usunOrganizmy();
+
 };
 
 #endif
