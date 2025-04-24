@@ -15,6 +15,7 @@ class Organizm{
         int pozycja_x;
         int pozycja_y;
         Swiat* swiat;
+        bool zyje = true; 
     public:
         Organizm(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* swiat);
         virtual ~Organizm();
@@ -30,9 +31,13 @@ class Organizm{
         int getPozycjaX() const;
         int getPozycjaY() const;
         Swiat* getSwiat() const;
+        bool getZyje() const;
         //settery
         void setSila(int newSila);
         void setInicjatywa(int newInicjatywa);
         void setPozycja(int newX, int newY);
+        void setZyjeFalse();
+        //porównanie sily organizmów
+        bool wiekszaSilaOd(Organizm* other);
 };
 #endif

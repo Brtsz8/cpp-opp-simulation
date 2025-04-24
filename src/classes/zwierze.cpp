@@ -75,11 +75,6 @@ void Zwierze::akcja(){
     //znajduje organizm na miejsu do ktorego chce sie ruszyc
     Organizm* other = getSwiat()->findOrganismAt(new_x,new_y);
     
-    if (other != nullptr) {
-    //std::cerr << "Znaleziono innego organizma na (" << new_x << "," << new_y << "): "
-    //          << typeid(*other).name() << "\n";
-}
-
     //jezeli w dany miejsu nie ma zadnego organizmu
     if(other == nullptr)
     {
@@ -107,27 +102,26 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
         //zwraca dwa inty reprezentujace wolne pole
         auto [new_x, new_y] = znajdzWolnePoleObok();
         if(new_x == -1 && new_y == -1){
-            //[new_x, new_y] == other->znajdzWolnePoleObok();
-            //if(new_x == -1 && new_y == -1){
-            //    getSwiat()->nowyLog(string("Klonowanie nie powiodlo sie - za malo miejsca"));
-            //    return;
-            //}else{
-            //    Organizm* potomek = this->dodajPotomka(new_x, new_y);
-            //    if(potomek == nullptr) {
-            //        cerr << "dodajPotomka zwrocilo nullptr!\n";
-            //    }
-            //    if(potomek) getSwiat()->nowyOrganizm(potomek);
-            //}
-            getSwiat()->nowyLog(string("Klonowanie nie powiodlo sie - za malo miejsca"));
-            return;
+            return; //gdy nie ma miejsca na nowy organizm to konczymy kolizje 
         }else{
             Organizm* potomek = this->dodajPotomka(new_x, new_y);
-            if(potomek == nullptr) {
-                cerr << "dodajPotomka zwrocilo nullptr!\n";
-            }
+            if(potomek == nullptr) { cout<<"Nie udało sie stworzyc potomka - błąd programu :(";};
             if(potomek) getSwiat()->nowyOrganizm(potomek);
+            return;
         }
 
     }
     /*tu bedzie reszta logiki ataku*/
+    ostringstream log;
+    log << "Próba ataku!";
+
+    if(wiekszaSilaOd(other)){
+        setPozycja(other->getPozycjaX(), other->getPozycjaY());  //organizm przesuwa sie na pole organizmu ktory pokonal
+        other->setZyjeFalse();
+        log<<"Organizm zabija inny organizm na x:" <<other->getPozycjaX()<<" y:"<<other->getPozycjaY();
+    }else{
+        setZyjeFalse();
+        log<<"Organizm zabija inny organizm na x:" <<getPozycjaX()<<" y:"<<getPozycjaY();
+    }
+    getSwiat()->nowyLog(log.str());
 }

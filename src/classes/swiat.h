@@ -43,7 +43,7 @@ class Swiat{
 
         void usunOrganizmy();
         void sortujWszystkie();
-
+        void usunZabite();
 };
 
 #endif

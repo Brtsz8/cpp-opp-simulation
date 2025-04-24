@@ -65,16 +65,14 @@ void Swiat::wyswietlLogi(int pierwszyLog){
 
 void Swiat::wykonajTure(){
     sortujWszystkie();
-    vector<Organizm*> aktualne = organizmy;
     
-    for (size_t i = 0; i < aktualne.size(); ++i) {
-        Organizm* organizm = aktualne[i];
-        if (organizm) {
+    for (size_t i = 0; i < organizmy.size(); ++i) {
+        Organizm* organizm = organizmy[i];
+        if (organizm->getZyje()) {
             organizm->akcja();
-        } else {
-            std::cout << " (nullptr)\n";
         }
     }
+    usunZabite();
     rysujSwiat();
     wyswietlLogi(topLog);
 }
@@ -104,4 +102,15 @@ void Swiat::sortujWszystkie() {
     std::stable_sort(organizmy.begin(), organizmy.end(), [](Organizm* a, Organizm* b) {
         return a->getInicjatywa() > b->getInicjatywa(); // only initiative matters
     });
+}
+
+void Swiat::usunZabite(){
+    for (size_t i = 0; i < organizmy.size(); ++i) {
+        Organizm* organizm = organizmy[i];
+        if (!organizm->getZyje()) {
+            organizmy.erase(organizmy.begin()+i); //usun z listy organizmow
+            delete organizm;
+            i--;
+        }
+    }
 }

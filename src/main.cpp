@@ -89,14 +89,14 @@ int main(){
     initscr();
     cbreak();
     noecho();
-    curs_set(0);      // Hide cursor
-    refresh();        // Refresh main window
+    curs_set(0);
+    refresh();
 
     // Create a main window , log window, info window and turn counter window
     WINDOW *win = newwin(cfg.height, cfg.width, cfg.start_y, cfg.start_x);
-    WINDOW *log_window = newwin(cfg.height,cfg.width,cfg.start_y,cfg.start_x + cfg.width);
+    WINDOW *log_window = newwin(cfg.height,cfg.width*1.5,cfg.start_y,cfg.start_x + cfg.width);
     WINDOW *info_window = newwin(3,cfg.width,cfg.start_y-3,cfg.start_x);
-    WINDOW *turn_counter = newwin(3,cfg.width, cfg.start_y-3, cfg.start_x + cfg.width);
+    WINDOW *turn_counter = newwin(3,cfg.width*1.5, cfg.start_y-3, cfg.start_x + cfg.width);
     if (win == NULL || log_window == NULL || info_window == NULL || turn_counter == NULL ) {
         endwin();
         printf("Error creating window!\n");

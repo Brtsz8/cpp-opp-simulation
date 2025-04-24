@@ -26,6 +26,9 @@ int Organizm::getPozycjaY() const{
 Swiat* Organizm::getSwiat() const{
     return swiat;
 }
+bool Organizm::getZyje() const{
+    return zyje;
+}
 //settery
 void Organizm::setSila(int newSila){
     this->sila = newSila;
@@ -36,4 +39,13 @@ void Organizm::setInicjatywa(int newInicjatywa){
 void Organizm::setPozycja(int newX, int newY){
     this->pozycja_x = newX;
     this->pozycja_y = newY;
+}
+
+void Organizm::setZyjeFalse(){
+    zyje = false;
+}
+
+bool Organizm::wiekszaSilaOd(Organizm* other){
+    if(this->sila >= other->getSila()) return false;
+    else return true;
 }
