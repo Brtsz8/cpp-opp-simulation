@@ -23,13 +23,18 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
 
     Swiat swiat(win, log_window); 
 
-    swiat.nowyOrganizm(new Zolw(1, 1, &swiat));
-    swiat.nowyOrganizm(new Zolw(2, 2, &swiat));
-    swiat.nowyOrganizm(new Zolw(3, 3, &swiat));
-    swiat.nowyOrganizm(new Zolw(4, 4, &swiat));
-    swiat.nowyOrganizm(new Owca(5, 5, &swiat));
-    swiat.nowyOrganizm(new Owca(6, 6, &swiat));
-    swiat.nowyOrganizm(new Owca(7, 7, &swiat));
+    swiat.nowyOrganizm(new Wilk(1, 1, &swiat));
+    swiat.nowyOrganizm(new Wilk(2, 2, &swiat));
+    swiat.nowyOrganizm(new Wilk(3, 3, &swiat));
+    swiat.nowyOrganizm(new Wilk(4, 4, &swiat));
+    swiat.nowyOrganizm(new Lis(5, 5, &swiat));
+    swiat.nowyOrganizm(new Lis(6, 6, &swiat));
+    swiat.nowyOrganizm(new Lis(7, 7, &swiat));
+    swiat.nowyOrganizm(new Lis(15, 15, &swiat));
+    swiat.nowyOrganizm(new Lis(16, 16, &swiat));
+    swiat.nowyOrganizm(new Lis(17, 17, &swiat));
+    swiat.nowyOrganizm(new Lis(18, 18, &swiat));
+    swiat.nowyOrganizm(new Lis(19, 19, &swiat));
 
     while((command = getchar()))     //q odpowiada za wyjscie z symulacji
     {   

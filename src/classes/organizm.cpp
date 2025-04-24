@@ -46,6 +46,6 @@ void Organizm::setZyjeFalse(){
 }
 
 bool Organizm::wiekszaSilaOd(Organizm* other){
-    if(this->sila >= other->getSila()) return false;
-    else return true;
+    if(this->sila >= other->getSila()) return true;
+    else return false;
 }

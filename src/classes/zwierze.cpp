@@ -8,7 +8,7 @@
 using namespace std;
 
 //zwraca liczbe od 0 do 3 wlacznie, w celu wybrania kierunku ruchu przez organizm
-int getRandomDir(){
+int Zwierze::getRandomDir(){
     //static urzywany zeby nie resetowac tego z kazdym wywolaniem funkcji 
     static random_device rd;
     static mt19937 gen(rd());
@@ -17,7 +17,7 @@ int getRandomDir(){
 }
 
 //funkcja sprawdza czy nie zwierze nie probuje wyjsc poza plansze
-bool isInBounds(WINDOW* win, int y, int x) {
+bool Zwierze::isInBounds(WINDOW* win, int y, int x) {
     int h, w;
     getmaxyx(win, h, w);
     return y > 0 && y < h-1 && x > 0 && x < w-1;

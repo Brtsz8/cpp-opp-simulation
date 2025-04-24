@@ -8,6 +8,7 @@ class Lis : public Zwierze {
         Lis(int pozycja_x, int pozycja_y, Swiat* swiat);
 
         ~Lis() override;
+        void akcja() override;
 
         Organizm* dodajPotomka(int x, int y) override;
         char rysowanie() override;
