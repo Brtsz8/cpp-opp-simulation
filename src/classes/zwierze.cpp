@@ -1,27 +1,10 @@
 #include <iostream>
 //nie uzywam rand ze wzgledu na thread safety
-#include <random>
 #include <sstream>
 #include "zwierze.h"
 #include "swiat.h"
 
 using namespace std;
-
-//zwraca liczbe od 0 do 3 wlacznie, w celu wybrania kierunku ruchu przez organizm
-int Zwierze::getRandomDir(){
-    //static urzywany zeby nie resetowac tego z kazdym wywolaniem funkcji 
-    static random_device rd;
-    static mt19937 gen(rd());
-    static uniform_int_distribution<> dis(0,3);
-    return dis(gen);
-}
-
-//funkcja sprawdza czy nie zwierze nie probuje wyjsc poza plansze
-bool Zwierze::isInBounds(WINDOW* win, int y, int x) {
-    int h, w;
-    getmaxyx(win, h, w);
-    return y > 0 && y < h-1 && x > 0 && x < w-1;
-}
 
 //konstruktor
 Zwierze::Zwierze(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* swiat)
@@ -29,22 +12,6 @@ Zwierze::Zwierze(int sila, int inicjatywa, int pozycja_x, int pozycja_y, Swiat* 
 
 //Destruktor
 Zwierze::~Zwierze() {};
-
-pair<int, int> Zwierze::znajdzWolnePoleObok(){
-    static const int dirs[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
-
-    for(auto [dx, dy] : dirs){
-        int new_x = getPozycjaX() + dx;
-        int new_y = getPozycjaY() + dy;
-
-        //sprawdza czy nowo wybrana pozycja jest wolna i czy nie jest poza granicami swiata
-        if( isInBounds(getSwiat()->getWin(), new_x, new_y) && 
-            getSwiat()->findOrganismAt(new_x, new_y) == nullptr)
-            return {new_x, new_y};
-    }
-
-    return {-1,-1}; //brak miejsca -> trzeba sprawdzic to w funckji wywolujacej
-}
 
 //akcja ktora zalezy od typu zwierzecia
 void Zwierze::akcja(){

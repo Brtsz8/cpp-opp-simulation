@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include "organizm.h"
 #include "swiat.h"
 
@@ -48,4 +49,34 @@ void Organizm::setZyjeFalse(){
 bool Organizm::wiekszaSilaOd(Organizm* other){
     if(this->sila >= other->getSila()) return true;
     else return false;
+}
+//zwraca liczbe od 0 do 3 wlacznie, w celu wybrania kierunku ruchu przez organizm
+int Organizm::getRandomDir(){
+    //static urzywany zeby nie resetowac tego z kazdym wywolaniem funkcji 
+    static random_device rd;
+    static mt19937 gen(rd());
+    static uniform_int_distribution<> dis(0,3);
+    return dis(gen);
+}
+
+//funkcja sprawdza czy nie zwierze nie probuje wyjsc poza plansze
+bool Organizm::isInBounds(WINDOW* win, int y, int x) {
+    int h, w;
+    getmaxyx(win, h, w);
+    return y > 0 && y < h-1 && x > 0 && x < w-1;
+}
+pair<int, int> Organizm::znajdzWolnePoleObok(){
+    static const int dirs[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+
+    for(auto [dx, dy] : dirs){
+        int new_x = getPozycjaX() + dx;
+        int new_y = getPozycjaY() + dy;
+
+        //sprawdza czy nowo wybrana pozycja jest wolna i czy nie jest poza granicami swiata
+        if( isInBounds(getSwiat()->getWin(), new_x, new_y) && 
+            getSwiat()->findOrganismAt(new_x, new_y) == nullptr)
+            return {new_x, new_y};
+    }
+
+    return {-1,-1}; //brak miejsca -> trzeba sprawdzic to w funckji wywolujacej
 }
