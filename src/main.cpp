@@ -25,7 +25,19 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     Swiat swiat(win, log_window); 
 
     swiat.nowyOrganizm(new Trawa(2, 2, &swiat));
-
+    swiat.nowyOrganizm(new Wilk(1, 1, &swiat));
+    swiat.nowyOrganizm(new Wilk(2, 2, &swiat));
+    swiat.nowyOrganizm(new Wilk(3, 3, &swiat));
+    swiat.nowyOrganizm(new Wilk(4, 4, &swiat));
+    swiat.nowyOrganizm(new Zolw(5, 5, &swiat));
+    swiat.nowyOrganizm(new Zolw(6, 6, &swiat));
+    swiat.nowyOrganizm(new Zolw(7, 7, &swiat));
+    swiat.nowyOrganizm(new Zolw(15, 15, &swiat));
+    swiat.nowyOrganizm(new Zolw(16, 16, &swiat));
+    swiat.nowyOrganizm(new Zolw(17, 17, &swiat));
+    swiat.nowyOrganizm(new Zolw(18, 18, &swiat));
+    swiat.nowyOrganizm(new Zolw(19, 19, &swiat));
+    
     while((command = getchar()))     //q odpowiada za wyjscie z symulacji
     {   
         if(command == 'q') break;
@@ -82,6 +94,7 @@ int main(){
     load_config("../cfg/config.txt",&cfg);
     
     initscr();
+    start_color();
     cbreak();
     noecho();
     curs_set(0);

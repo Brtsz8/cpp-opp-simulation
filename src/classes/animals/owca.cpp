@@ -9,11 +9,11 @@ Owca::Owca(int pozycja_x, int pozycja_y, Swiat* swiat)
 
 Owca::~Owca() {};
 
-char Owca::rysowanie(){
+char Owca::rysowanie() const {
     return 'O';
 }
 
-Organizm* Owca::dodajPotomka(int x, int y){
+Organizm* Owca::dodajPotomka(int x, int y) const {
     Organizm* mlodaOwca = new Owca(x,y,getSwiat());
     if (mlodaOwca == nullptr) {
         cerr << "[BŁĄD] Nie udało się zaalokować pamięci dla młodej owcy!" << endl;

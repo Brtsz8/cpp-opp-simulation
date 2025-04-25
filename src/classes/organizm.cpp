@@ -80,3 +80,7 @@ pair<int, int> Organizm::znajdzWolnePoleObok(){
 
     return {-1,-1}; //brak miejsca -> trzeba sprawdzic to w funckji wywolujacej
 }
+
+bool Organizm::czyOdbilAtak(Organizm* atakujacy){
+    return false; //wersja podstawowa - roznica tylko dla zowia i tarczy alzuara
+}

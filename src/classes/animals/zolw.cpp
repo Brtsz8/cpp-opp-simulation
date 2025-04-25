@@ -9,11 +9,20 @@ Zolw::Zolw(int pozycja_x, int pozycja_y, Swiat* swiat)
 
 Zolw::~Zolw() {};
 
-char Zolw::rysowanie(){
+void Zolw::akcja(){
+    if(getRandomDir()==0) Zwierze::akcja();     //75% przypadkow sie nie rusza
+}
+
+char Zolw::rysowanie() const {
     return 'Z';
 }
 
-Organizm* Zolw::dodajPotomka(int x, int y){
+Organizm* Zolw::dodajPotomka(int x, int y) const {
     Organizm* mlodyZolw = new Zolw(x,y,getSwiat());
     return mlodyZolw;
+}
+
+bool Zolw::czyOdbilAtak(Organizm* atakujacy){
+    if(atakujacy->getSila() < 5) return true;
+    return false;
 }

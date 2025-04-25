@@ -58,6 +58,7 @@ void Zwierze::akcja(){
 
 //opisuje co dzieje sie przy kolizji miedzy dwoma zwierzetami
 void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
+    ostringstream log;
     if(typeid(*this)==typeid(*other))
     {
         getSwiat()->nowyLog(string("Beda sie klonowac!"));
@@ -74,8 +75,17 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
         }
 
     }
+
+    /*sprawdza czy inny organizm odbil atak*/
+    if(other->czyOdbilAtak(this)){
+        log<<"Nieudany atak na x:"<<getPozycjaX()<<" y:"<<getPozycjaY()<<" -powrot na stare wspolrzedne";
+        getSwiat()->nowyLog(log.str());
+        setPozycja(fromX, fromY);
+        return;
+    }
+
+
     /*tu bedzie reszta logiki ataku*/
-    ostringstream log;
     log << "Próba ataku!";
 
     if(wiekszaSilaOd(other)){

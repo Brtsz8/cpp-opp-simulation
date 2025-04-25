@@ -9,10 +9,10 @@ Wilk::Wilk(int pozycja_x, int pozycja_y, Swiat* swiat)
 
 Wilk::~Wilk() {};
 
-char Wilk::rysowanie(){
+char Wilk::rysowanie() const {
     return 'W';
 }
-Organizm* Wilk::dodajPotomka(int x, int y){
+Organizm* Wilk::dodajPotomka(int x, int y)  const {
     Organizm* mlodyWilk = new Wilk(x,y,getSwiat());
     return mlodyWilk;
 }

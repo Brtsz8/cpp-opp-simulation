@@ -12,11 +12,11 @@ Lis::Lis(int pozycja_x, int pozycja_y, Swiat* swiat)
 
 Lis::~Lis() {};
 
-char Lis::rysowanie(){
+char Lis::rysowanie() const {
     return 'L';
 }
 
-Organizm* Lis::dodajPotomka(int x, int y){
+Organizm* Lis::dodajPotomka(int x, int y) const {
     Organizm* mlodyLis = new Lis(x,y,getSwiat());
     return mlodyLis;
 }

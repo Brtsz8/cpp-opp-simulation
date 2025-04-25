@@ -9,7 +9,9 @@ class Zolw : public Zwierze {
 
         ~Zolw() override;
 
-        char rysowanie() override;
-        Organizm* dodajPotomka(int x, int y) override;
+        virtual void akcja() override;
+        char rysowanie() const override;
+        Organizm* dodajPotomka(int x, int y) const override;
+        bool czyOdbilAtak(Organizm* atakujacy) override;
 };
 #endif //ZOLW_H

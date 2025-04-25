@@ -9,11 +9,11 @@ Antylopa::Antylopa(int pozycja_x, int pozycja_y, Swiat* swiat)
 
 Antylopa::~Antylopa() {};
 
-char Antylopa::rysowanie(){
+char Antylopa::rysowanie() const {
     return 'A';
 }
 
-Organizm* Antylopa::dodajPotomka(int x, int y){
+Organizm* Antylopa::dodajPotomka(int x, int y) const {
     Organizm* mlodaAntylopa = new Antylopa(x,y,getSwiat());
     return mlodaAntylopa;
 }

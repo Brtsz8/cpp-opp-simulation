@@ -10,7 +10,7 @@ class Lis : public Zwierze {
         ~Lis() override;
         void akcja() override;
 
-        Organizm* dodajPotomka(int x, int y) override;
-        char rysowanie() override;
+        Organizm* dodajPotomka(int x, int y) const override;
+        char rysowanie() const override;
 };
 #endif //LIS_H
