@@ -3,6 +3,7 @@
 #include <random>
 #include <sstream>
 #include "../roslina.h"
+#include "../zwierze.h"
 #include "barszcz.h"
 #include "../swiat.h"
 using namespace std;
@@ -34,4 +35,24 @@ void Barszcz::wplywNaSile(Organizm* atakujacy){
     log << "Barszcz sosnowskiego zostal zjedzony - ... ginie!";
     getSwiat()->nowyLog(log.str());
     atakujacy->setSila(-1); //zmienijsza sile organizmu ponizej zera - zabija
+}
+void Barszcz::akcja(){
+    int barszczX = getPozycjaX();
+    int barszczY = getPozycjaY();
+    auto win = getSwiat()->getWin();
+
+    int del_x[4] = { barszczX ,barszczX  ,barszczX-1,barszczX+1};
+    int del_y[4] = {barszczY-1,barszczY+1,barszczY  ,barszczY};
+    
+    for (int i = 0; i < 4; ++i) {
+        if (isInBounds(win,del_y[i],del_x[i])) {
+            Organizm* sasiad = getSwiat()->findOrganismAt(del_x[i],del_y[i]);
+            if (sasiad != nullptr && dynamic_cast<Zwierze*>(sasiad) != nullptr) {
+                getSwiat()->nowyLog("Barsz zabija!");
+                sasiad->setZyjeFalse();
+            }
+        }
+    }
+
+    Roslina::akcja();
 }

@@ -30,7 +30,7 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     Swiat* swiat = new Swiat(win, log_window);
 
     swiat->nowyOrganizm(new Wilk(4, 4, swiat));
-    swiat->nowyOrganizm(new Jagody(1, 1, swiat));
+    //swiat->nowyOrganizm(new Jagody(1, 1, swiat));
     swiat->nowyOrganizm(new Owca(2, 2, swiat));
     swiat->nowyOrganizm(new Owca(3, 2, swiat));
     swiat->nowyOrganizm(new Owca(4, 2, swiat));
@@ -42,7 +42,7 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     swiat->nowyOrganizm(new Owca(10, 2, swiat));
     swiat->nowyOrganizm(new Owca(11, 2, swiat));
     swiat->nowyOrganizm(new Owca(12, 2, swiat));
-    swiat->nowyOrganizm(new Barszcz(12, 12, swiat));
+    swiat->nowyOrganizm(new Barszcz(1, 1, swiat));
 
     while((command = getchar())) {
         if(command == 'q') break;
