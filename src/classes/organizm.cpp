@@ -84,3 +84,4 @@ pair<int, int> Organizm::znajdzWolnePoleObok(){
 bool Organizm::czyOdbilAtak(Organizm* atakujacy){
     return false; //wersja podstawowa - roznica tylko dla zowia i tarczy alzuara
 }
+void Organizm::wplywNaSile(Organizm* atakujacy){}

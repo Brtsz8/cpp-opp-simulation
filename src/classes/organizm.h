@@ -39,6 +39,7 @@ class Organizm{
         void setZyjeFalse();
 
         virtual bool czyOdbilAtak(Organizm* atakujacy);
+        virtual void wplywNaSile(Organizm* atakujacy);
     protected:
         //porównanie sily organizmów
         bool wiekszaSilaOd(Organizm* other);

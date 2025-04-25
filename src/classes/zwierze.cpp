@@ -84,7 +84,7 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
         return;
     }
 
-
+    other->wplywNaSile(this); //sprawdza czy inny organizm ma jakis wply na sile
     /*tu bedzie reszta logiki ataku*/
     log << "Próba ataku!";
 

@@ -29,9 +29,9 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
 
     Swiat* swiat = new Swiat(win, log_window);
 
-    swiat->nowyOrganizm(new Mlecz(22, 22, swiat));
-    swiat->nowyOrganizm(new Trawa(1, 1, swiat));
-    //swiat->nowyOrganizm(new Owca(2, 2, swiat));
+    swiat->nowyOrganizm(new Wilk(4, 4, swiat));
+    swiat->nowyOrganizm(new Guarana(1, 1, swiat));
+    swiat->nowyOrganizm(new Owca(2, 2, swiat));
 
     while((command = getchar())) {
         if(command == 'q') break;
@@ -55,7 +55,7 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
         swiat->wykonajTure();
         turn_count++;
         ostringstream log;
-        log << "Tura numer: "<<turn_count;
+        log << "---Tura numer: "<<turn_count<<"----------------------";
         swiat->nowyLog(log.str());
         mvwprintw(turn_counter, 1, 1, "Turn number: %d", turn_count);
         wrefresh(turn_counter);

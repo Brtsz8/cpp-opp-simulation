@@ -60,13 +60,13 @@ void Roslina::akcja(){
         log<<"Dodano nowy organizm na x:"<<new_x<<" y:"<<new_y;
         if(potomek == nullptr) { cout<<"Nie udało sie stworzyc potomka - błąd programu :(";};
         if(potomek) getSwiat()->nowyOrganizm(potomek);
+        getSwiat()->nowyLog(log.str());
         return;
     }
     //w przeciwnym razie kolizja
     else{
        //kolizja(from_x, from_y, other);
     }
-    getSwiat()->nowyLog(log.str());
 }
 
 void Roslina::kolizja(int from_x, int from_y, Organizm* other){}
