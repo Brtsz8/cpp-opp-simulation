@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ncurses.h>
+#include <sstream>
 #include "config.h"
 #include "classes/organizm.h"
 #include "classes/swiat.h"
@@ -32,11 +33,11 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     //swiat.nowyOrganizm(new Zolw(5, 5, &swiat));
     //swiat.nowyOrganizm(new Zolw(6, 6, &swiat));
    /// swiat.nowyOrganizm(new Zolw(7, 7, &swiat));
-   // swiat.nowyOrganizm(new Zolw(15, 15, &swiat));
-   // swiat.nowyOrganizm(new Zolw(16, 16, &swiat));
-   // swiat.nowyOrganizm(new Zolw(17, 17, &swiat));
-    swiat.nowyOrganizm(new Owca(1, 1, &swiat));
-    swiat.nowyOrganizm(new Zolw(2, 2, &swiat));
+    swiat.nowyOrganizm(new Antylopa(15, 15, &swiat));
+    swiat.nowyOrganizm(new Antylopa(16, 16, &swiat));
+    swiat.nowyOrganizm(new Antylopa(17, 17, &swiat));
+    swiat.nowyOrganizm(new Antylopa(1, 1, &swiat));
+   // swiat.nowyOrganizm(new Wilk(2, 2, &swiat));
     
     while((command = getchar()))     //q odpowiada za wyjscie z symulacji
     {   
@@ -60,6 +61,9 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
             
             swiat.wykonajTure();
             turn_count++;
+            ostringstream log;
+            log << "Tura numer: "<<turn_count;
+            swiat.nowyLog(log.str());
             mvwprintw(turn_counter, 1, 1, "Turn number: %d", turn_count);
             wrefresh(turn_counter);
         }
@@ -103,7 +107,7 @@ int main(){
 
     // Create a main window , log window, info window and turn counter window
     WINDOW *win = newwin(cfg.height, cfg.width, cfg.start_y, cfg.start_x);
-    WINDOW *log_window = newwin(cfg.height,60,cfg.start_y,cfg.start_x + cfg.width);
+    WINDOW *log_window = newwin(20,60,cfg.start_y,cfg.start_x + cfg.width);
     WINDOW *info_window = newwin(3,cfg.width,cfg.start_y-3,cfg.start_x);
     WINDOW *turn_counter = newwin(3,60, cfg.start_y-3, cfg.start_x + cfg.width);
     if (win == NULL || log_window == NULL || info_window == NULL || turn_counter == NULL ) {

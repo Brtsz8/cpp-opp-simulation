@@ -44,7 +44,7 @@ class Organizm{
         bool wiekszaSilaOd(Organizm* other);
 
         std::pair<int, int> znajdzWolnePoleObok();
-        int getRandomDir();
+        virtual int getRandomDir();
         bool isInBounds(WINDOW* win, int y, int x);
 };
 #endif
