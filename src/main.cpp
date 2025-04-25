@@ -11,6 +11,10 @@
 #include "classes/animals/antylopa.h"
 #include "classes/animals/lis.h"
 #include "classes/plants/trawa.h"
+#include "classes/plants/mlecz.h"
+#include "classes/plants/guarana.h"
+#include "classes/plants/jagody.h"
+#include "classes/plants/barszcz.h"
 
 using namespace std;
 
@@ -23,52 +27,43 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     char command;
     int turn_count = 0;
 
-    Swiat swiat(win, log_window); 
+    Swiat* swiat = new Swiat(win, log_window);
 
-    //swiat.nowyOrganizm(new Trawa(2, 2, &swiat));
-    //swiat.nowyOrganizm(new Wilk(1, 1, &swiat));
-    //swiat.nowyOrganizm(new Wilk(2, 2, &swiat));
-    //swiat.nowyOrganizm(new Wilk(3, 3, &swiat));
-    //swiat.nowyOrganizm(new Wilk(4, 4, &swiat));
-    //swiat.nowyOrganizm(new Zolw(5, 5, &swiat));
-    //swiat.nowyOrganizm(new Zolw(6, 6, &swiat));
-   /// swiat.nowyOrganizm(new Zolw(7, 7, &swiat));
-    swiat.nowyOrganizm(new Antylopa(15, 15, &swiat));
-    swiat.nowyOrganizm(new Antylopa(16, 16, &swiat));
-    swiat.nowyOrganizm(new Antylopa(17, 17, &swiat));
-    swiat.nowyOrganizm(new Antylopa(1, 1, &swiat));
-   // swiat.nowyOrganizm(new Wilk(2, 2, &swiat));
-    
-    while((command = getchar()))     //q odpowiada za wyjscie z symulacji
-    {   
+    swiat->nowyOrganizm(new Mlecz(22, 22, swiat));
+    swiat->nowyOrganizm(new Trawa(1, 1, swiat));
+    //swiat->nowyOrganizm(new Owca(2, 2, swiat));
+
+    while((command = getchar())) {
         if(command == 'q') break;
+
         if(command == '1') {
-            int new_index = swiat.getTopLogIndex() + 1;
-            swiat.setTopLogIndex(new_index);
-            swiat.wyswietlLogi(swiat.getTopLogIndex());
+            int new_index = swiat->getTopLogIndex() + 1;
+            swiat->setTopLogIndex(new_index);
+            swiat->wyswietlLogi(swiat->getTopLogIndex());
             wrefresh(log_window);
             continue;
         }
-        if(command == '2')
-        {
-            int new_index = swiat.getTopLogIndex() - 1;
-            swiat.setTopLogIndex(new_index);
-            swiat.wyswietlLogi(swiat.getTopLogIndex());
+
+        if(command == '2') {
+            int new_index = swiat->getTopLogIndex() - 1;
+            swiat->setTopLogIndex(new_index);
+            swiat->wyswietlLogi(swiat->getTopLogIndex());
             wrefresh(log_window);
             continue;
         }
-        else{
-            
-            swiat.wykonajTure();
-            turn_count++;
-            ostringstream log;
-            log << "Tura numer: "<<turn_count;
-            swiat.nowyLog(log.str());
-            mvwprintw(turn_counter, 1, 1, "Turn number: %d", turn_count);
-            wrefresh(turn_counter);
-        }
+
+        swiat->wykonajTure();
+        turn_count++;
+        ostringstream log;
+        log << "Tura numer: "<<turn_count;
+        swiat->nowyLog(log.str());
+        mvwprintw(turn_counter, 1, 1, "Turn number: %d", turn_count);
+        wrefresh(turn_counter);
     }
+
+    delete swiat;
 }
+
 
 void setUpWindows(WINDOW *win,WINDOW *log_window, WINDOW *info_window, WINDOW *turn_counter){
     box(win, 0, 0);

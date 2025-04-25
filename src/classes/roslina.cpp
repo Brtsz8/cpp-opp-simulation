@@ -57,17 +57,16 @@ void Roslina::akcja(){
         if(new_x == -1 && new_y == -1) return; //gdy nie ma miejsca na nowy organizm to konczymy
         
         Organizm* potomek = this->dodajPotomka(new_x, new_y);
+        log<<"Dodano nowy organizm na x:"<<new_x<<" y:"<<new_y;
         if(potomek == nullptr) { cout<<"Nie udało sie stworzyc potomka - błąd programu :(";};
         if(potomek) getSwiat()->nowyOrganizm(potomek);
         return;
     }
     //w przeciwnym razie kolizja
     else{
-        kolizja(from_x, from_y, other);
+       //kolizja(from_x, from_y, other);
     }
     getSwiat()->nowyLog(log.str());
 }
 
-void Roslina::kolizja(int from_x, int from_y, Organizm* other){
-    /**/
-}
+void Roslina::kolizja(int from_x, int from_y, Organizm* other){}

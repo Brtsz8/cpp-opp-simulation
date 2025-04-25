@@ -14,6 +14,7 @@ class Swiat{
         WINDOW *win;
         WINDOW *log_window;
         vector<Organizm*> organizmy;
+        vector<Organizm*> nowe;
         vector<string> logs;
         int topLog = 0;
     public:

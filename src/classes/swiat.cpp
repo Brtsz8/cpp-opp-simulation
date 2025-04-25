@@ -10,6 +10,11 @@ Swiat::Swiat(WINDOW *new_win, WINDOW *new_log_win) : win(new_win), log_window(ne
 
 Swiat::~Swiat(){
     usunOrganizmy(); //prevents memory leaks, clear-up after simulation
+    for(Organizm* organizm : nowe){
+        delete organizm;
+    }
+    nowe.clear();
+    logs.clear();
 }
 
 void Swiat::usunOrganizmy() {
@@ -39,7 +44,8 @@ void Swiat::setTopLogIndex(int index){
 }
 
 void Swiat::nowyOrganizm(Organizm* organizm){
-    organizmy.push_back(organizm);
+    //organizmy.push_back(organizm);
+    nowe.push_back(organizm);
 }
 
 void Swiat::nowyLog(string log){
@@ -66,14 +72,16 @@ void Swiat::wyswietlLogi(int pierwszyLog){
 
 void Swiat::wykonajTure(){
     sortujWszystkie();
-    
     for (size_t i = 0; i < organizmy.size(); ++i) {
         Organizm* organizm = organizmy[i];
-        if (organizm->getZyje()) {
-            organizm->akcja();
-        }
+        if (organizm->getZyje()) organizm->akcja();
     }
     usunZabite();
+    for(Organizm* nowy : nowe){
+        organizmy.push_back(nowy);
+    }
+    nowe.clear();
+    
     rysujSwiat();
     wyswietlLogi(topLog);
 }
