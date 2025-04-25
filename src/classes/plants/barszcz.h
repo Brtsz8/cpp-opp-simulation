@@ -12,5 +12,7 @@ class Barszcz : public Roslina {
 
         virtual Organizm* dodajPotomka(int x, int y) const override;
         virtual char rysowanie() const override;
+        virtual void kolizja(int from_x, int from_y, Organizm* other) override;
+        void wplywNaSile(Organizm* atakujacy) override;
 };
 #endif //BARSZCZ_H
