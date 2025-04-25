@@ -21,9 +21,9 @@ class Organizm{
         virtual ~Organizm();
         virtual void akcja() = 0 ;
         virtual void kolizja(int from_x, int from_y, Organizm* other) = 0;
-        virtual Organizm* dodajPotomka(int x, int y) = 0;
+        virtual Organizm* dodajPotomka(int x, int y) const = 0;
         //zwraca symbol do narysowania
-        virtual char rysowanie() = 0;
+        virtual char rysowanie() const = 0;
         
         //gettery
         int getSila() const;
@@ -37,6 +37,7 @@ class Organizm{
         void setInicjatywa(int newInicjatywa);
         void setPozycja(int newX, int newY);
         void setZyjeFalse();
+    protected:
         //porównanie sily organizmów
         bool wiekszaSilaOd(Organizm* other);
 

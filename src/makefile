@@ -11,7 +11,7 @@ CXXFLAGS = -Wall -std=c++20 -g -fsanitize=address -fno-omit-frame-pointer
 LDFLAGS = -lncurses -fsanitize=address
 
 # Pliki źródłowe
-SRCS = main.cpp config.cpp $(wildcard classes/*.cpp) $(wildcard classes/animals/*.cpp)
+SRCS = main.cpp config.cpp $(wildcard classes/*.cpp) $(wildcard classes/animals/*.cpp) $(wildcard classes/plants/*.cpp)
 
 # Pliki obiektowe (zmienia .cpp na .o)
 OBJS = $(SRCS:.cpp=.o)

@@ -15,7 +15,8 @@ Zwierze::~Zwierze() {};
 
 //akcja ktora zalezy od typu zwierzecia
 void Zwierze::akcja(){
-
+    ostringstream log; //do wpisywania logow
+    
     if (getSwiat() == nullptr) {
         std::cerr << "Błąd: getSwiat() == nullptr\n";
         abort();
@@ -45,19 +46,14 @@ void Zwierze::akcja(){
     //jezeli w dany miejsu nie ma zadnego organizmu
     if(other == nullptr)
     {
-        setPozycja(new_x,new_y);
-        
-        ostringstream log;
+        setPozycja(new_x,new_y);        
         log << "Przesuwam na nowa pozycje x:"<<new_x<<", y: "<<new_y;
-        getSwiat()->nowyLog(log.str());
     }
     //w przeciwnym razie kolizja
     else{
-        ostringstream log;
-        log << "Próba ataku!";
-        getSwiat()->nowyLog(log.str());
         kolizja(from_x, from_y, other);
     }
+    getSwiat()->nowyLog(log.str());
 }
 
 //opisuje co dzieje sie przy kolizji miedzy dwoma zwierzetami
