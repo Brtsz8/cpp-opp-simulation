@@ -24,19 +24,19 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
 
     Swiat swiat(win, log_window); 
 
-    swiat.nowyOrganizm(new Trawa(2, 2, &swiat));
-    swiat.nowyOrganizm(new Wilk(1, 1, &swiat));
-    swiat.nowyOrganizm(new Wilk(2, 2, &swiat));
-    swiat.nowyOrganizm(new Wilk(3, 3, &swiat));
-    swiat.nowyOrganizm(new Wilk(4, 4, &swiat));
-    swiat.nowyOrganizm(new Zolw(5, 5, &swiat));
-    swiat.nowyOrganizm(new Zolw(6, 6, &swiat));
-    swiat.nowyOrganizm(new Zolw(7, 7, &swiat));
-    swiat.nowyOrganizm(new Zolw(15, 15, &swiat));
-    swiat.nowyOrganizm(new Zolw(16, 16, &swiat));
-    swiat.nowyOrganizm(new Zolw(17, 17, &swiat));
-    swiat.nowyOrganizm(new Zolw(18, 18, &swiat));
-    swiat.nowyOrganizm(new Zolw(19, 19, &swiat));
+    //swiat.nowyOrganizm(new Trawa(2, 2, &swiat));
+    //swiat.nowyOrganizm(new Wilk(1, 1, &swiat));
+    //swiat.nowyOrganizm(new Wilk(2, 2, &swiat));
+    //swiat.nowyOrganizm(new Wilk(3, 3, &swiat));
+    //swiat.nowyOrganizm(new Wilk(4, 4, &swiat));
+    //swiat.nowyOrganizm(new Zolw(5, 5, &swiat));
+    //swiat.nowyOrganizm(new Zolw(6, 6, &swiat));
+   /// swiat.nowyOrganizm(new Zolw(7, 7, &swiat));
+   // swiat.nowyOrganizm(new Zolw(15, 15, &swiat));
+   // swiat.nowyOrganizm(new Zolw(16, 16, &swiat));
+   // swiat.nowyOrganizm(new Zolw(17, 17, &swiat));
+    swiat.nowyOrganizm(new Owca(1, 1, &swiat));
+    swiat.nowyOrganizm(new Zolw(2, 2, &swiat));
     
     while((command = getchar()))     //q odpowiada za wyjscie z symulacji
     {   
@@ -44,7 +44,7 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
         if(command == '1') {
             int new_index = swiat.getTopLogIndex() + 1;
             swiat.setTopLogIndex(new_index);
-            swiat.wyswietlLogi(new_index);
+            swiat.wyswietlLogi(swiat.getTopLogIndex());
             wrefresh(log_window);
             continue;
         }
@@ -52,7 +52,7 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
         {
             int new_index = swiat.getTopLogIndex() - 1;
             swiat.setTopLogIndex(new_index);
-            swiat.wyswietlLogi(new_index);
+            swiat.wyswietlLogi(swiat.getTopLogIndex());
             wrefresh(log_window);
             continue;
         }
@@ -100,11 +100,12 @@ int main(){
     curs_set(0);
     refresh();
 
+
     // Create a main window , log window, info window and turn counter window
     WINDOW *win = newwin(cfg.height, cfg.width, cfg.start_y, cfg.start_x);
-    WINDOW *log_window = newwin(cfg.height,cfg.width*1.5,cfg.start_y,cfg.start_x + cfg.width);
+    WINDOW *log_window = newwin(cfg.height,60,cfg.start_y,cfg.start_x + cfg.width);
     WINDOW *info_window = newwin(3,cfg.width,cfg.start_y-3,cfg.start_x);
-    WINDOW *turn_counter = newwin(3,cfg.width*1.5, cfg.start_y-3, cfg.start_x + cfg.width);
+    WINDOW *turn_counter = newwin(3,60, cfg.start_y-3, cfg.start_x + cfg.width);
     if (win == NULL || log_window == NULL || info_window == NULL || turn_counter == NULL ) {
         endwin();
         printf("Error creating window!\n");

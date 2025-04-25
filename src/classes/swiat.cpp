@@ -34,6 +34,7 @@ int Swiat::getTopLogIndex(){
 
 //setter do okienka z logami
 void Swiat::setTopLogIndex(int index){
+    if(index>=0 && index<=(int)logs.size()-getmaxy(log_window)+2)
     topLog = index;
 }
 
