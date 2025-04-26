@@ -17,6 +17,7 @@ class Swiat{
         vector<Organizm*> nowe;
         vector<string> logs;
         int topLog = 0;
+        int command;
     public:
         Swiat(WINDOW *new_win, WINDOW *new_log_win);
         ~Swiat();
@@ -25,9 +26,10 @@ class Swiat{
         WINDOW* getWin();
         WINDOW* getLog();
         int getTopLogIndex();
-
+        int getCommand();
         //settery
         void setTopLogIndex(int index);
+        void setCommand(int command);
 
         void wykonajTure();
         void rysujSwiat();

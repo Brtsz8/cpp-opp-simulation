@@ -13,8 +13,8 @@ class Czlowiek : public Zwierze {
 
         virtual ~Czlowiek() override;
         virtual void akcja() override;
-        virtual void kolizja(int from_x, int from_y, Organizm* other);  
-        bool czyOdbilAtak(Organizm* atakujacy) override;
+        virtual void kolizja(int from_x, int from_y, Organizm* other) override;  
+        virtual bool czyOdbilAtak(Organizm* atakujacy) override;
         
         //gettery
         bool getUmiejetnoscAktywna() const;
@@ -22,11 +22,11 @@ class Czlowiek : public Zwierze {
         int getDlugoscRegeneracji() const;
 
         //settery
-        void setUmiejetnoscAktywna(bool zmianaStanu) const;
+        void setUmiejetnoscAktywna(bool zmianaStanu);
         void setDlugoscUmiejetnosci(int dlugoscUmiejetnosci);
         void setDlugoscRegeneracji(int dlugoscRegeneracji);
 
-        //Organizm* dodajPotomka(int x, int y) const override;
+        Organizm* dodajPotomka(int x, int y) const override;
         char rysowanie() const override;
         virtual string nazwa() const override;
 };

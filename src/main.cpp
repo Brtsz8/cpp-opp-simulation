@@ -25,7 +25,7 @@ using namespace std;
 #define DEFAULT_START_X 5
 
 void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
-    char command;
+    int command;
     int turn_count = 0;
 
     Swiat* swiat = new Swiat(win, log_window);
@@ -45,7 +45,10 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     swiat->nowyOrganizm(new Antylopa(12, 2, swiat));
     swiat->nowyOrganizm(new Barszcz(1, 1, swiat));
 
-    while((command = getchar())) {
+    swiat->nowyOrganizm(new Czlowiek(25,25, swiat));
+    swiat->rysujSwiat();
+    while((command = getch())) {
+        swiat->setCommand(command);
         if(command == 'q') break;
 
         if(command == '1') {
@@ -110,6 +113,7 @@ int main(){
     noecho();
     curs_set(0);
     refresh();
+    keypad(stdscr, TRUE);
 
 
     // Create a main window , log window, info window and turn counter window

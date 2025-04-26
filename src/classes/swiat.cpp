@@ -37,10 +37,19 @@ int Swiat::getTopLogIndex(){
     return topLog;
 }
 
+int Swiat::getCommand(){
+    return command;
+}
+
 //setter do okienka z logami
 void Swiat::setTopLogIndex(int index){
     if(index>=0 && index<=(int)logs.size()-getmaxy(log_window)+2)
     topLog = index;
+}
+
+void Swiat::setCommand(int command)
+{
+    this->command = command;
 }
 
 void Swiat::nowyOrganizm(Organizm* organizm){
@@ -100,6 +109,11 @@ void Swiat::rysujSwiat() {
 
 Organizm* Swiat::findOrganismAt(int x, int y){
     for(Organizm* organizm : organizmy){
+        if (organizm->getPozycjaX() == x && organizm->getPozycjaY() == y){
+            return organizm;
+        }   
+    }
+    for(Organizm* organizm : nowe){
         if (organizm->getPozycjaX() == x && organizm->getPozycjaY() == y){
             return organizm;
         }   
