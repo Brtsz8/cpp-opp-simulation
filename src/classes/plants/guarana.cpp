@@ -15,6 +15,9 @@ Guarana::~Guarana() {};
 char Guarana::rysowanie() const {
     return '&';
 }
+string Guarana::nazwa() const {
+    return "Guarana";
+}
 
 Organizm* Guarana::dodajPotomka(int x, int y) const {
     Organizm* mlodaGuarana = new Guarana(x,y,getSwiat());
@@ -23,7 +26,8 @@ Organizm* Guarana::dodajPotomka(int x, int y) const {
 
 void Guarana::kolizja(int from_x, int from_y, Organizm* other){
     ostringstream log;
-    log<<"Zwiekszono sile organizmu na polu x:"<<getPozycjaX()<<" y:"<<getPozycjaY();
+   log<<other->nazwa()<<" na polu x:"<<getPozycjaX()<<" y:"<<getPozycjaY()
+    <<" ma wiekszo sile ("<<nazwa()<<")";
     auto silaOther = other -> getSila();
     other->setSila(silaOther + 3); //zwieksza sile atakujacego o 3
 
@@ -32,7 +36,9 @@ void Guarana::kolizja(int from_x, int from_y, Organizm* other){
 }
 void Guarana::wplywNaSile(Organizm* atakujacy){
     ostringstream log;
-    log << "Guarana zostala zjedzona - sila organizmu zwiekszona o 3!";
+    log<<atakujacy->nazwa()<<" na polu x:"<<getPozycjaX()<<" y:"<<getPozycjaY()
+    <<" ma wiekszo sile ("<<nazwa()<<")";
+    //tu nie potrzebujemy setZyjeFalse bo ta logia juz jest obslugiwana przez zwierze.cpp
     getSwiat()->nowyLog(log.str());
     atakujacy->setSila(getSila()+3); //zwieksza sile zwierzecia ktore zjadlo o 3
 }

@@ -12,6 +12,9 @@ Wilk::~Wilk() {};
 char Wilk::rysowanie() const {
     return 'W';
 }
+string Wilk::nazwa() const {
+    return "Wilk";
+}
 Organizm* Wilk::dodajPotomka(int x, int y)  const {
     Organizm* mlodyWilk = new Wilk(x,y,getSwiat());
     return mlodyWilk;

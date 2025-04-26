@@ -10,6 +10,7 @@ class Antylopa : public Zwierze {
         virtual ~Antylopa() override;
 
         char rysowanie() const override;
+        virtual string nazwa() const override;
         Organizm* dodajPotomka(int x, int y) const override;
         virtual void akcja() override;
         virtual void kolizja(int fromX, int fromY, Organizm* other) override;

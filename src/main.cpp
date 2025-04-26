@@ -32,16 +32,16 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     swiat->nowyOrganizm(new Wilk(4, 4, swiat));
     //swiat->nowyOrganizm(new Jagody(1, 1, swiat));
     swiat->nowyOrganizm(new Owca(2, 2, swiat));
-    swiat->nowyOrganizm(new Owca(3, 2, swiat));
-    swiat->nowyOrganizm(new Owca(4, 2, swiat));
-    swiat->nowyOrganizm(new Owca(5, 2, swiat));
-    swiat->nowyOrganizm(new Owca(6, 2, swiat));
-    swiat->nowyOrganizm(new Owca(7, 2, swiat));
-    swiat->nowyOrganizm(new Owca(8, 2, swiat));
-    swiat->nowyOrganizm(new Owca(9, 2, swiat));
-    swiat->nowyOrganizm(new Owca(10, 2, swiat));
-    swiat->nowyOrganizm(new Owca(11, 2, swiat));
-    swiat->nowyOrganizm(new Owca(12, 2, swiat));
+    swiat->nowyOrganizm(new Guarana(3, 2, swiat));
+    swiat->nowyOrganizm(new Lis(4, 2, swiat));
+    swiat->nowyOrganizm(new Antylopa(5, 2, swiat));
+    swiat->nowyOrganizm(new Zolw(6, 2, swiat));
+    swiat->nowyOrganizm(new Jagody(7, 2, swiat));
+    swiat->nowyOrganizm(new Trawa(8, 2, swiat));
+    swiat->nowyOrganizm(new Mlecz(9, 2, swiat));
+    swiat->nowyOrganizm(new Zolw(10, 2, swiat));
+    swiat->nowyOrganizm(new Lis(11, 2, swiat));
+    swiat->nowyOrganizm(new Antylopa(12, 2, swiat));
     swiat->nowyOrganizm(new Barszcz(1, 1, swiat));
 
     while((command = getchar())) {

@@ -15,6 +15,9 @@ Lis::~Lis() {};
 char Lis::rysowanie() const {
     return 'L';
 }
+string Lis::nazwa() const {
+    return "Lis";
+}
 
 Organizm* Lis::dodajPotomka(int x, int y) const {
     Organizm* mlodyLis = new Lis(x,y,getSwiat());
@@ -56,14 +59,13 @@ void Lis::akcja() {
     {
         setPozycja(new_x,new_y);
         
-        log << "Przesuwam na nowa pozycje x:"<<new_x<<", y: "<<new_y;
+        log <<nazwa()<<" przesuwa sie na nowa pozycje x:"<<new_x<<", y: "<<new_y;
     }
     //w przeciwnym razie kolizja
     else if(wiekszaSilaOd(other)){
-        log << "Próba ataku!";
         kolizja(from_x, from_y, other);
     }else{
-        log<<"Lis nie rusza sie na pole x:"<<new_x<<" y:"<<new_y<<" -jest slabszy!";
+        log<<nazwa()<<" nie rusza sie na pole x:"<<new_x<<" y:"<<new_y<<" -jest slabszy!";
     }
     getSwiat()->nowyLog(log.str());
 }

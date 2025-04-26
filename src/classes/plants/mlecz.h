@@ -13,5 +13,6 @@ class Mlecz : public Roslina {
         virtual void akcja() override;
         virtual Organizm* dodajPotomka(int x, int y) const override;
         virtual char rysowanie() const override;
+        virtual string nazwa() const override;
 };
 #endif //MLECZ_H

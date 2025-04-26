@@ -24,6 +24,8 @@ class Organizm{
         virtual Organizm* dodajPotomka(int x, int y) const = 0;
         //zwraca symbol do narysowania
         virtual char rysowanie() const = 0;
+        //zwraca nazwe organizmu, czysto wirtualn
+        virtual string nazwa() const = 0;
         
         //gettery
         int getSila() const;

@@ -11,6 +11,7 @@ class Zolw : public Zwierze {
 
         virtual void akcja() override;
         char rysowanie() const override;
+        virtual string nazwa() const override;
         Organizm* dodajPotomka(int x, int y) const override;
         bool czyOdbilAtak(Organizm* atakujacy) override;
 };

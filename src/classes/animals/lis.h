@@ -12,5 +12,6 @@ class Lis : public Zwierze {
 
         Organizm* dodajPotomka(int x, int y) const override;
         char rysowanie() const override;
+        virtual string nazwa() const override;
 };
 #endif //LIS_H

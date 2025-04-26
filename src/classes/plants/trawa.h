@@ -12,5 +12,6 @@ class Trawa : public Roslina {
 
         virtual Organizm* dodajPotomka(int x, int y) const override;
         virtual char rysowanie() const override;
+        virtual string nazwa() const override;
 };
 #endif //TRAWA_H

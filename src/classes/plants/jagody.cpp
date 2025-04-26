@@ -15,6 +15,9 @@ Jagody::~Jagody() {};
 char Jagody::rysowanie() const {
     return '%';
 }
+string Jagody::nazwa() const {
+    return "Wilcze Jagody";
+}
 
 Organizm* Jagody::dodajPotomka(int x, int y) const {
     Organizm* mlodaJagody = new Jagody(x,y,getSwiat());
@@ -23,7 +26,8 @@ Organizm* Jagody::dodajPotomka(int x, int y) const {
 
 void Jagody::kolizja(int from_x, int from_y, Organizm* other){
     ostringstream log;
-    log<<"Wilcze jagody zostal zjedzony - ... ginie";
+    log<<nazwa()<<" zjedzone - ginie "<<other->nazwa()
+       <<" na polu x:"<<other->getPozycjaX()<<" y:"<<other->getPozycjaY();
     other->setSila(-1); //zabija atakujacy organizm
 
     getSwiat()->nowyLog(log.str());
@@ -31,7 +35,8 @@ void Jagody::kolizja(int from_x, int from_y, Organizm* other){
 }
 void Jagody::wplywNaSile(Organizm* atakujacy){
     ostringstream log;
-    log << "Wilcze jagody zostal zjedzony - ... ginie!";
+    log<<nazwa()<<" zjedzone - ginie "<<atakujacy->nazwa()
+       <<" na polu x:"<<atakujacy->getPozycjaX()<<" y:"<<atakujacy->getPozycjaY();
     getSwiat()->nowyLog(log.str());
     atakujacy->setSila(-1); //zmienijsza sile organizmu ponizej zera - zabija
 }

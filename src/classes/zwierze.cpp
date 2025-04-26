@@ -47,13 +47,13 @@ void Zwierze::akcja(){
     if(other == nullptr)
     {
         setPozycja(new_x,new_y);        
-        log << "Przesuwam na nowa pozycje x:"<<new_x<<", y: "<<new_y;
+        log << "Przesuwam "<<nazwa()<<" na nowa pozycje x:"<<new_x<<", y: "<<new_y;
+        getSwiat()->nowyLog(log.str());
     }
     //w przeciwnym razie kolizja
     else{
         kolizja(from_x, from_y, other);
     }
-    getSwiat()->nowyLog(log.str());
 }
 
 //opisuje co dzieje sie przy kolizji miedzy dwoma zwierzetami
@@ -61,16 +61,17 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
     ostringstream log;
     if(typeid(*this)==typeid(*other))
     {
-        getSwiat()->nowyLog(string("Beda sie klonowac!"));
-        
         //zwraca dwa inty reprezentujace wolne pole
         auto [new_x, new_y] = znajdzWolnePoleObok();
         if(new_x == -1 && new_y == -1){
             return; //gdy nie ma miejsca na nowy organizm to konczymy kolizje 
         }else{
             Organizm* potomek = this->dodajPotomka(new_x, new_y);
+            log<<nazwa()<<" i "<<other->nazwa()<<" beda miec potomka na x:"
+            <<new_x<<" y:"<<new_y;
             if(potomek == nullptr) { cout<<"Nie udało sie stworzyc potomka - błąd programu :(";};
             if(potomek) getSwiat()->nowyOrganizm(potomek);
+            getSwiat()->nowyLog(log.str());
             return;
         }
 
@@ -78,7 +79,7 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
 
     /*sprawdza czy inny organizm odbil atak*/
     if(other->czyOdbilAtak(this)){
-        log<<"Nieudany atak na x:"<<getPozycjaX()<<" y:"<<getPozycjaY()<<" -powrot na stare wspolrzedne";
+        log<<nazwa()<<" nieudany atak na x:"<<getPozycjaX()<<" y:"<<getPozycjaY()<<" -wraca na pole";
         getSwiat()->nowyLog(log.str());
         setPozycja(fromX, fromY);
         return;
@@ -87,19 +88,20 @@ void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
     other->wplywNaSile(this); //sprawdza czy inny organizm ma jakis wply na sile
     if(getSila()<0){
         setZyjeFalse();
-        log<<"Organizm zatruty przez ...";
+        log<<nazwa()<<" zatruty przez "<<other->nazwa();
         getSwiat()->nowyLog(log.str());
+        log.str("");
+        log.clear();
     }
     /*tu bedzie reszta logiki ataku*/
-    log << "Próba ataku!";
-
     if(wiekszaSilaOd(other)){
         setPozycja(other->getPozycjaX(), other->getPozycjaY());  //organizm przesuwa sie na pole organizmu ktory pokonal
         other->setZyjeFalse();
-        log<<"Organizm zabija inny organizm na x:" <<other->getPozycjaX()<<" y:"<<other->getPozycjaY();
+        log<<nazwa()<<" zabija "<<other->nazwa()<<" na x:" <<other->getPozycjaX()<<" y:"<<other->getPozycjaY();
+        getSwiat()->nowyLog(log.str());
     }else{
         setZyjeFalse();
-        log<<"Organizm zabija inny organizm na x:" <<getPozycjaX()<<" y:"<<getPozycjaY();
+        log<<other->nazwa()<<" zabija "<<nazwa()<<" na x:" <<getPozycjaX()<<" y:"<<getPozycjaY();
+        getSwiat()->nowyLog(log.str());
     }
-    getSwiat()->nowyLog(log.str());
 }

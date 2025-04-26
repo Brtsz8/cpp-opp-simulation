@@ -15,6 +15,9 @@ Trawa::~Trawa() {};
 char Trawa::rysowanie() const {
     return 'T';
 }
+string Trawa::nazwa() const {
+    return "Trawa";
+}
 
 Organizm* Trawa::dodajPotomka(int x, int y) const {
     Organizm* mlodaTrawa = new Trawa(x,y,getSwiat());

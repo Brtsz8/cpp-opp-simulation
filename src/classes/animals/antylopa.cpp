@@ -14,6 +14,9 @@ Antylopa::~Antylopa() {};
 char Antylopa::rysowanie() const {
     return 'A';
 }
+string Antylopa::nazwa() const {
+    return "Antylopa";
+}
 
 Organizm* Antylopa::dodajPotomka(int x, int y) const {
     Organizm* mlodaAntylopa = new Antylopa(x,y,getSwiat());
@@ -67,7 +70,7 @@ void Antylopa::akcja(){
     if(other == nullptr)
     {
         setPozycja(new_x,new_y);        
-        log << "Przesuwam na nowa pozycje x:"<<new_x<<", y: "<<new_y;
+        log <<nazwa()<<" przesuwa sie na nowa pozycje x:"<<new_x<<", y: "<<new_y;
     }
     //w przeciwnym razie kolizja
     else{
@@ -83,7 +86,7 @@ void Antylopa::kolizja(int fromX, int fromY, Organizm* other){
         Zwierze::kolizja(fromX,fromY,other);
     }
     if(!czyUcieka()){
-        log<<"Antylopa na x:"<<getPozycjaX()<<" y:"<<getPozycjaY()<<" nie ucieka";
+        log<<nazwa()<<" na x:"<<getPozycjaX()<<" y:"<<getPozycjaY()<<" nie ucieka";
         getSwiat()->nowyLog(log.str());
         Zwierze::kolizja(fromX,fromY,other);
     }else{
@@ -98,7 +101,7 @@ void Antylopa::kolizja(int fromX, int fromY, Organizm* other){
             if( isInBounds(getSwiat()->getWin(), new_y, new_x) &&
                 getSwiat()->findOrganismAt(new_x, new_y) == nullptr)
             {
-                log<<"Antylopa ucieka na pole x:"<<new_x<<" y:"<<new_y;
+                log<<nazwa()<<" ucieka na pole x:"<<new_x<<" y:"<<new_y;
                 setPozycja(new_x,new_y);
                 getSwiat()->nowyLog(log.str());
                 return;
@@ -113,7 +116,7 @@ void Antylopa::kolizja(int fromX, int fromY, Organizm* other){
 bool Antylopa::czyOdbilAtak(Organizm* atakujacy){
     ostringstream log;
     if(!czyUcieka()){
-        log<<"Antylopa na x:"<<getPozycjaX()<<" y:"<<getPozycjaY()<<" nie ucieka";
+        log<<nazwa()<<" na x:"<<getPozycjaX()<<" y:"<<getPozycjaY()<<" nie ucieka";
         getSwiat()->nowyLog(log.str());
         return false;
     }
@@ -128,7 +131,7 @@ bool Antylopa::czyOdbilAtak(Organizm* atakujacy){
         if( isInBounds(getSwiat()->getWin(), new_y, new_x) &&
             getSwiat()->findOrganismAt(new_x, new_y) == nullptr)
         {
-            log<<"Antylopa ucieka na pole x:"<<new_x<<" y:"<<new_y;
+            log<<nazwa()<<" ucieka na pole x:"<<new_x<<" y:"<<new_y;
             setPozycja(new_x,new_y);
             getSwiat()->nowyLog(log.str());
             return true;

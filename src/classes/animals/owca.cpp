@@ -12,6 +12,9 @@ Owca::~Owca() {};
 char Owca::rysowanie() const {
     return 'O';
 }
+string Owca::nazwa() const {
+    return "Owca";
+}
 
 Organizm* Owca::dodajPotomka(int x, int y) const {
     Organizm* mlodaOwca = new Owca(x,y,getSwiat());

@@ -10,6 +10,7 @@ class Wilk : public Zwierze {
         ~Wilk() override;
 
         virtual char rysowanie()const override;
+        virtual string nazwa() const override;
         virtual Organizm* dodajPotomka(int x, int y) const override;
 };
 #endif //WILK_H

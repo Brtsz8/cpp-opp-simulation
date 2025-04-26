@@ -14,5 +14,6 @@ class Jagody : public Roslina {
         virtual char rysowanie() const override;
         virtual void kolizja(int from_x, int from_y, Organizm* other) override;
         void wplywNaSile(Organizm* atakujacy) override;
+        virtual string nazwa() const override;
 };
 #endif //JAGODY_H

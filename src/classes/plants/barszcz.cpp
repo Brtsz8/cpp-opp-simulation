@@ -17,6 +17,10 @@ char Barszcz::rysowanie() const {
     return '!';
 }
 
+string Barszcz::nazwa() const {
+    return "Barszcz Sosnowskiego";
+}
+
 Organizm* Barszcz::dodajPotomka(int x, int y) const {
     Organizm* mlodaBarszcz = new Barszcz(x,y,getSwiat());
     return mlodaBarszcz;
@@ -24,7 +28,7 @@ Organizm* Barszcz::dodajPotomka(int x, int y) const {
 
 void Barszcz::kolizja(int from_x, int from_y, Organizm* other){
     ostringstream log;
-    log<<"Barszcz sosnowskiego zostal zjedzony - ... ginie";
+    log<<nazwa()<<" zostal zjedzony - "<<other->nazwa()<<" ginie";
     other->setSila(-1); //zabija atakujacy organizm
 
     getSwiat()->nowyLog(log.str());
@@ -32,11 +36,12 @@ void Barszcz::kolizja(int from_x, int from_y, Organizm* other){
 }
 void Barszcz::wplywNaSile(Organizm* atakujacy){
     ostringstream log;
-    log << "Barszcz sosnowskiego zostal zjedzony - ... ginie!";
+    log<<nazwa()<<" zostal zjedzony - "<<atakujacy->nazwa()<<" ginie";
     getSwiat()->nowyLog(log.str());
     atakujacy->setSila(-1); //zmienijsza sile organizmu ponizej zera - zabija
 }
 void Barszcz::akcja(){
+    ostringstream log;
     int barszczX = getPozycjaX();
     int barszczY = getPozycjaY();
     auto win = getSwiat()->getWin();
@@ -48,7 +53,8 @@ void Barszcz::akcja(){
         if (isInBounds(win,del_y[i],del_x[i])) {
             Organizm* sasiad = getSwiat()->findOrganismAt(del_x[i],del_y[i]);
             if (sasiad != nullptr && dynamic_cast<Zwierze*>(sasiad) != nullptr) {
-                getSwiat()->nowyLog("Barsz zabija!");
+                log<<nazwa()<<" zabija "<<sasiad->nazwa()<<" ktory byl za blisko";
+                getSwiat()->nowyLog(log.str());
                 sasiad->setZyjeFalse();
             }
         }

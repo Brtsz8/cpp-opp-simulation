@@ -16,6 +16,9 @@ void Zolw::akcja(){
 char Zolw::rysowanie() const {
     return 'Z';
 }
+string Zolw::nazwa() const {
+    return "Zolw";
+}
 
 Organizm* Zolw::dodajPotomka(int x, int y) const {
     Organizm* mlodyZolw = new Zolw(x,y,getSwiat());

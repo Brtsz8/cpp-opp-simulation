@@ -14,6 +14,9 @@ Mlecz::~Mlecz() {};
 char Mlecz::rysowanie() const {
     return '@';
 }
+string Mlecz::nazwa() const {
+    return "Mlecz";
+}
 
 Organizm* Mlecz::dodajPotomka(int x, int y) const {
     Organizm* mlodyMlecz = new Mlecz(x,y,getSwiat());
@@ -59,7 +62,7 @@ void Mlecz::akcja(){
             if(new_x == -1 && new_y == -1) continue; //gdy nie ma miejsca na nowy organizm to konczymy
             
             Organizm* potomek = this->dodajPotomka(new_x, new_y);
-            log<<"Dodano nowy organizm na x:"<<new_x<<" y:"<<new_y<<" ";
+            log<<"Dodano nowy"<<potomek->nazwa()<<" na x:"<<new_x<<" y:"<<new_y<<" ";
             if(potomek == nullptr) { cout<<"Nie udało sie stworzyc potomka - błąd programu :(";};
             if(potomek) getSwiat()->nowyOrganizm(potomek);
             getSwiat()->nowyLog(log.str());
