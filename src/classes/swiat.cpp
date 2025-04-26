@@ -2,7 +2,20 @@
 #include <ncurses.h>
 #include <algorithm>
 #include <vector>
+#include <fstream>
 #include "swiat.h"
+#include "animals/antylopa.h"
+#include "animals/czlowiek.h"
+#include "animals/lis.h"
+#include "animals/owca.h"
+#include "animals/wilk.h"
+#include "animals/zolw.h"
+#include "plants/barszcz.h"
+#include "plants/mlecz.h"
+#include "plants/jagody.h"
+#include "plants/trawa.h"
+#include "plants/guarana.h"
+
 
 using namespace std;
 
@@ -86,8 +99,8 @@ void Swiat::wykonajTure(){
         if (organizm->getZyje()) organizm->akcja();
     }
     usunZabite();
-    for(Organizm* nowy : nowe){
-        organizmy.push_back(nowy);
+    for(Organizm* organizm : nowe){
+        organizmy.push_back(organizm);
     }
     nowe.clear();
     
@@ -136,4 +149,77 @@ void Swiat::usunZabite(){
             i--;
         }
     }
+}
+
+void Swiat::save(string filePath){
+    ofstream file(filePath);
+    if(!file.is_open()) return;
+    file<<"Win"<<endl;
+    for(Organizm* organizm : organizmy){
+        file<<organizm->nazwa()<<" "
+            <<organizm->getPozycjaX()<<" "
+            <<organizm->getPozycjaY()<<" "
+            <<organizm->getSila()<<endl;  //sila musi byc bo ona tez moze byc zmieniana (inicjatywa nie)
+    }
+    file<<"LogWindow"<<endl;
+    for(string log : logs) file<<log<<endl;
+    file.close();
+}
+
+void Swiat::load(string filePath){
+    usunOrganizmy(); //czyscimy swiat
+    logs.clear(); //czyscimy logi
+
+    ifstream file(filePath);
+    if(!file.is_open()) return;
+    string line;
+    int pozycja_x,pozycja_y,sila;
+    file>>line; //pierwszy buffer
+    while(file>>line && line!="LogWindow"){
+        file>>pozycja_x>>pozycja_y>>sila;
+        Organizm* organizm = nullptr;
+        if (line == "Wilk") {
+            organizm = new Wilk(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Owca") {
+            organizm = new Owca(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Lis") {
+            organizm = new Lis(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Zolw") {
+            organizm = new Zolw(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Antylopa") {
+            organizm = new Antylopa(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Trawa") {
+            organizm = new Trawa(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Mlecz") {
+            organizm = new Mlecz(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Guarana") {
+            organizm = new Guarana(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Wilcze Jagody") {
+            organizm = new Jagody(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Barszcz Sosnowskiego") {
+            organizm = new Barszcz(pozycja_x, pozycja_y, this);
+        }
+        else if (line == "Czlowiek") {
+            organizm = new Czlowiek(pozycja_x, pozycja_y, this);
+        }
+
+        if(organizm){
+            organizm->setSila(sila);
+            nowyOrganizm(organizm);
+        }
+    }
+    while(getline(file,line))
+    {
+        if(!line.empty()) logs.push_back(line);
+    }
+    file.close();
 }

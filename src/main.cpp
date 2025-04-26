@@ -31,21 +31,24 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     Swiat* swiat = new Swiat(win, log_window);
 
     swiat->nowyOrganizm(new Wilk(4, 4, swiat));
+    swiat->nowyOrganizm(new Wilk(4, 3, swiat));
+    swiat->nowyOrganizm(new Wilk(4, 2, swiat));
+    swiat->nowyOrganizm(new Wilk(4, 1, swiat));
     //swiat->nowyOrganizm(new Jagody(1, 1, swiat));
-    swiat->nowyOrganizm(new Owca(2, 2, swiat));
-    swiat->nowyOrganizm(new Guarana(3, 2, swiat));
-    swiat->nowyOrganizm(new Lis(4, 2, swiat));
-    swiat->nowyOrganizm(new Antylopa(5, 2, swiat));
-    swiat->nowyOrganizm(new Zolw(6, 2, swiat));
-    swiat->nowyOrganizm(new Jagody(7, 2, swiat));
-    swiat->nowyOrganizm(new Trawa(8, 2, swiat));
-    swiat->nowyOrganizm(new Mlecz(9, 2, swiat));
-    swiat->nowyOrganizm(new Zolw(10, 2, swiat));
-    swiat->nowyOrganizm(new Lis(11, 2, swiat));
-    swiat->nowyOrganizm(new Antylopa(12, 2, swiat));
-    swiat->nowyOrganizm(new Barszcz(1, 1, swiat));
+   // swiat->nowyOrganizm(new Owca(2, 2, swiat));
+   // swiat->nowyOrganizm(new Guarana(3, 2, swiat));
+   // swiat->nowyOrganizm(new Lis(4, 2, swiat));
+   // swiat->nowyOrganizm(new Antylopa(5, 2, swiat));
+  //  swiat->nowyOrganizm(new Zolw(6, 2, swiat));
+  //  swiat->nowyOrganizm(new Jagody(7, 2, swiat));
+  //  swiat->nowyOrganizm(new Trawa(8, 2, swiat));
+  //  swiat->nowyOrganizm(new Mlecz(9, 2, swiat));
+   // swiat->nowyOrganizm(new Zolw(10, 2, swiat));
+  //  swiat->nowyOrganizm(new Lis(11, 2, swiat));
+   // swiat->nowyOrganizm(new Antylopa(12, 2, swiat));
+   // swiat->nowyOrganizm(new Barszcz(1, 1, swiat));
 
-    swiat->nowyOrganizm(new Czlowiek(25,25, swiat));
+    swiat->nowyOrganizm(new Czlowiek(1,1, swiat));
     swiat->rysujSwiat();
     while((command = getch())) {
         swiat->setCommand(command);
@@ -66,6 +69,16 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
             wrefresh(log_window);
             continue;
         }
+        if(command == '4'){
+            swiat->save("save.txt");
+            continue;
+        } 
+        if(command == '5'){
+            swiat->load("save.txt");
+            swiat->rysujSwiat();
+            swiat->wyswietlLogi(swiat->getTopLogIndex());
+            continue;
+        } 
 
         swiat->wykonajTure();
         turn_count++;

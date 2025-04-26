@@ -47,6 +47,9 @@ class Swiat{
         void usunOrganizmy();
         void sortujWszystkie();
         void usunZabite();
+
+        void save(string filePath);
+        void load(string filePath);
 };
 
 #endif
