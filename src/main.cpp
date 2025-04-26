@@ -10,6 +10,7 @@
 #include "classes/animals/zolw.h"
 #include "classes/animals/antylopa.h"
 #include "classes/animals/lis.h"
+#include "classes/animals/czlowiek.h"
 #include "classes/plants/trawa.h"
 #include "classes/plants/mlecz.h"
 #include "classes/plants/guarana.h"
