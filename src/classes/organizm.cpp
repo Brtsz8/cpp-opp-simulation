@@ -65,7 +65,7 @@ bool Organizm::isInBounds(WINDOW* win, int y, int x) {
     getmaxyx(win, h, w);
     return y > 0 && y < h-1 && x > 0 && x < w-1;
 }
-pair<int, int> Organizm::znajdzWolnePoleObok(){
+pair<int, int> Organizm::znajdzWolnePoleObok() {
     static const int dirs[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
     for(auto [dx, dy] : dirs){
@@ -73,7 +73,7 @@ pair<int, int> Organizm::znajdzWolnePoleObok(){
         int new_y = getPozycjaY() + dy;
 
         //sprawdza czy nowo wybrana pozycja jest wolna i czy nie jest poza granicami swiata
-        if( isInBounds(getSwiat()->getWin(), new_x, new_y) && 
+        if( isInBounds(getSwiat()->getWin(), new_y, new_x) && 
             getSwiat()->findOrganismAt(new_x, new_y) == nullptr)
             return {new_x, new_y};
     }

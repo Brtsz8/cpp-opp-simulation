@@ -60,11 +60,11 @@ void Zwierze::akcja(){
 void Zwierze::kolizja(int fromX, int fromY, Organizm* other){
     ostringstream log;
     if(typeid(*this)==typeid(*other))
-    {
+    {   
         //zwraca dwa inty reprezentujace wolne pole
         auto [new_x, new_y] = znajdzWolnePoleObok();
-        if(new_x == -1 && new_y == -1){
-            return; //gdy nie ma miejsca na nowy organizm to konczymy kolizje 
+        if(new_x == -1 && new_y == -1){    
+                return; //gdy nie ma miejsca na nowy organizm to konczymy kolizje 
         }else{
             Organizm* potomek = this->dodajPotomka(new_x, new_y);
             log<<nazwa()<<" i "<<other->nazwa()<<" beda miec potomka na x:"

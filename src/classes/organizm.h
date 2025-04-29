@@ -42,11 +42,11 @@ class Organizm{
 
         virtual bool czyOdbilAtak(Organizm* atakujacy);
         virtual void wplywNaSile(Organizm* atakujacy);
+        std::pair<int, int> znajdzWolnePoleObok(); 
     protected:
         //porównanie sily organizmów
         bool wiekszaSilaOd(Organizm* other);
-
-        std::pair<int, int> znajdzWolnePoleObok();
+           
         virtual int getRandomDir();
         bool isInBounds(WINDOW* win, int y, int x);
 };

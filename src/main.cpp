@@ -32,10 +32,10 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     cin >> test;
     Swiat* swiat = new Swiat(win, log_window);
     if(test == 1){
-        swiat->nowyOrganizm(new Wilk(4, 4, swiat));
-        swiat->nowyOrganizm(new Wilk(4, 3, swiat));
-        swiat->nowyOrganizm(new Wilk(4, 2, swiat));
-        swiat->nowyOrganizm(new Wilk(4, 1, swiat));
+        swiat->nowyOrganizm(new Wilk(34, 14, swiat));
+        swiat->nowyOrganizm(new Wilk(34, 13, swiat));
+        swiat->nowyOrganizm(new Wilk(34, 12, swiat));
+        swiat->nowyOrganizm(new Wilk(34, 11, swiat));
         swiat->nowyOrganizm(new Czlowiek(1,1, swiat));
         swiat->nowyOrganizm(new Trawa(38,28,swiat));
     }
@@ -81,7 +81,7 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
 
     }
     if(test == 7){
-        
+
     }
 
     swiat->rysujSwiat();
