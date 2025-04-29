@@ -27,28 +27,63 @@ using namespace std;
 void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
     int command;
     int turn_count = 0;
-
+    cout<<"Test: ";
+    int test;
+    cin >> test;
     Swiat* swiat = new Swiat(win, log_window);
+    if(test == 1){
+        swiat->nowyOrganizm(new Wilk(4, 4, swiat));
+        swiat->nowyOrganizm(new Wilk(4, 3, swiat));
+        swiat->nowyOrganizm(new Wilk(4, 2, swiat));
+        swiat->nowyOrganizm(new Wilk(4, 1, swiat));
+        swiat->nowyOrganizm(new Czlowiek(1,1, swiat));
+        swiat->nowyOrganizm(new Trawa(38,28,swiat));
+    }
+    if(test == 2)
+    {
+        swiat->nowyOrganizm(new Jagody(1, 1, swiat));
+        swiat->nowyOrganizm(new Owca(2, 2, swiat));
+        swiat->nowyOrganizm(new Guarana(3, 2, swiat));
+        swiat->nowyOrganizm(new Lis(4, 2, swiat));
+        swiat->nowyOrganizm(new Antylopa(5, 2, swiat));
+        swiat->nowyOrganizm(new Zolw(6, 2, swiat));
+        swiat->nowyOrganizm(new Jagody(7, 2, swiat));
+        swiat->nowyOrganizm(new Trawa(8, 2, swiat));
+        swiat->nowyOrganizm(new Mlecz(9, 2, swiat));
+        swiat->nowyOrganizm(new Zolw(10, 2, swiat));
+        swiat->nowyOrganizm(new Lis(11, 2, swiat));
+        swiat->nowyOrganizm(new Antylopa(12, 2, swiat));
+        swiat->nowyOrganizm(new Barszcz(1, 1, swiat));
+    }
+    if(test == 3)
+    {
+        swiat->nowyOrganizm(new Barszcz(38, 28, swiat));
+        swiat->nowyOrganizm(new Guarana(1, 28, swiat));
+        swiat->nowyOrganizm(new Jagody(1, 1, swiat));
+        swiat->nowyOrganizm(new Trawa(38, 1, swiat));
+        
+    }
+    if(test == 4)
+    {
+        swiat->nowyOrganizm(new Barszcz(38, 28, swiat));
+        swiat->nowyOrganizm(new Guarana(1, 28, swiat));
+        swiat->nowyOrganizm(new Jagody(1, 1, swiat));
+        swiat->nowyOrganizm(new Mlecz(38, 1, swiat));
+    }    
+    if(test == 5)
+    {
+        swiat->nowyOrganizm(new Barszcz(38, 28, swiat));
+        swiat->nowyOrganizm(new Guarana(1, 28, swiat));
+        swiat->nowyOrganizm(new Jagody(1, 1, swiat));
+        swiat->nowyOrganizm(new Mlecz(38, 1, swiat));
+    }
+    if(test == 6){
 
-    swiat->nowyOrganizm(new Wilk(4, 4, swiat));
-    swiat->nowyOrganizm(new Wilk(4, 3, swiat));
-    swiat->nowyOrganizm(new Wilk(4, 2, swiat));
-    swiat->nowyOrganizm(new Wilk(4, 1, swiat));
-    //swiat->nowyOrganizm(new Jagody(1, 1, swiat));
-   // swiat->nowyOrganizm(new Owca(2, 2, swiat));
-   // swiat->nowyOrganizm(new Guarana(3, 2, swiat));
-   // swiat->nowyOrganizm(new Lis(4, 2, swiat));
-   // swiat->nowyOrganizm(new Antylopa(5, 2, swiat));
-  //  swiat->nowyOrganizm(new Zolw(6, 2, swiat));
-  //  swiat->nowyOrganizm(new Jagody(7, 2, swiat));
-  //  swiat->nowyOrganizm(new Trawa(8, 2, swiat));
-  //  swiat->nowyOrganizm(new Mlecz(9, 2, swiat));
-   // swiat->nowyOrganizm(new Zolw(10, 2, swiat));
-  //  swiat->nowyOrganizm(new Lis(11, 2, swiat));
-   // swiat->nowyOrganizm(new Antylopa(12, 2, swiat));
-   // swiat->nowyOrganizm(new Barszcz(1, 1, swiat));
+    }
+    if(test == 7){
+        
+    }
 
-    swiat->nowyOrganizm(new Czlowiek(1,1, swiat));
     swiat->rysujSwiat();
     while((command = getch())) {
         swiat->setCommand(command);
@@ -95,7 +130,7 @@ void simulation(WINDOW* win, WINDOW* log_window, WINDOW *turn_counter){
 
 void setUpWindows(WINDOW *win,WINDOW *log_window, WINDOW *info_window, WINDOW *turn_counter){
     box(win, 0, 0);
-    //box(log_window, 0, 0);
+    box(log_window, 0, 0);
     box(info_window, 0, 0);
     box(turn_counter, 0, 0);
     
@@ -140,7 +175,21 @@ int main(){
         return 1;
     }
 
-    setUpWindows(win,log_window,info_window,turn_counter);
+    box(win, 0, 0);
+    box(log_window, 0, 0);
+    box(info_window, 0, 0);
+    box(turn_counter, 0, 0);
+    
+    mvwprintw(info_window, 1, 1, "Bartosz Pacyga 203833");
+    mvwprintw(turn_counter, 1, 1, "Turn number: ");
+
+    scrollok(log_window, TRUE);
+
+    wrefresh(info_window);
+    wrefresh(log_window);
+    wrefresh(win);
+    wrefresh(turn_counter);
+    //setUpWindows(win,log_window,info_window,turn_counter);
     simulation(win,log_window,turn_counter);
 
     delwin(log_window);
